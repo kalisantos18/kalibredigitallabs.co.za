@@ -8,3 +8,225 @@
 <a href="contact.html">Contact</a>
 </div>
 </nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KDL Pricing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+padding:20px 10%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+nav a:hover{
+color:#00f0ff;
+}
+
+/* SECTION */
+section{
+padding:120px 10%;
+text-align:center;
+}
+
+h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+h1 span{
+color:#00f0ff;
+}
+
+/* GRID */
+.grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+margin-top:50px;
+}
+
+/* GLASS CARD */
+.card{
+width:300px;
+padding:30px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border-radius:20px;
+transition:0.4s;
+position:relative;
+overflow:hidden;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+border-color:#00f0ff;
+box-shadow:0 0 25px rgba(0,240,255,0.2);
+}
+
+.card h2{
+margin:10px 0;
+color:#00f0ff;
+}
+
+/* IMAGE */
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+/* LIST */
+ul{
+text-align:left;
+margin-top:15px;
+opacity:0.85;
+}
+
+ul li{
+margin:6px 0;
+}
+
+/* BUTTON */
+.btn{
+margin-top:15px;
+display:inline-block;
+padding:10px 25px;
+background:#00f0ff;
+color:black;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* HOVER GLOW */
+.card::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background:radial-gradient(circle at center,rgba(0,240,255,0.15),transparent 70%);
+opacity:0;
+transition:0.4s;
+}
+
+.card:hover::before{
+opacity:1;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+<div><strong>KDL</strong></div>
+<div>
+<a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="pricing.html">Pricing</a>
+<a href="portfolio.html">Portfolio</a>
+<a href="contact.html">Contact</a>
+</div>
+</nav>
+
+<!-- HEADER -->
+<section>
+<h1>Our <span>Pricing Plans</span></h1>
+<p>Simple, scalable plans designed for business growth.</p>
+
+<div class="grid">
+
+<!-- ENTRY -->
+<div class="card">
+<img src="assets/plan-entry.jpg">
+<h2>🟢 ENTRY</h2>
+<p>R799 / month</p>
+
+<ul>
+<li>Professional Website</li>
+<li>Hosting Included</li>
+<li>SSL Security</li>
+<li>Basic SEO Setup</li>
+<li>Contact Form</li>
+</ul>
+
+<a class="btn" href="contact.html">Get Started</a>
+</div>
+
+<!-- GROWTH -->
+<div class="card">
+<img src="assets/plan-growth.jpg">
+<h2>🔵 GROWTH</h2>
+<p>R1,399 / month</p>
+
+<ul>
+<li>Everything in Entry</li>
+<li>WhatsApp Integration</li>
+<li>Booking System</li>
+<li>Lead Tracking</li>
+<li>Monthly Reports</li>
+</ul>
+
+<a class="btn" href="contact.html">Get Started</a>
+</div>
+
+<!-- PREMIUM -->
+<div class="card">
+<img src="assets/plan-premium.jpg">
+<h2>🟣 PREMIUM</h2>
+<p>R2,199 / month</p>
+
+<ul>
+<li>Everything in Growth</li>
+<li>Advanced SEO</li>
+<li>Funnels & Automation</li>
+<li>Competitor Analysis</li>
+<li>Strategy Support</li>
+</ul>
+
+<a class="btn" href="contact.html">Get Started</a>
+</div>
+
+</div>
+</section>
+
+</body>
+</html>
