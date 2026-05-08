@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Kalibre Digital Labs</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <style>
 *{
@@ -19,20 +21,35 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#0b0b0b;
+background:#050505;
 color:white;
 overflow-x:hidden;
 }
 
-/* PARTICLES */
-#particles-js{
+/* ===== INTRO ===== */
+#intro{
 position:fixed;
 width:100%;
-height:100%;
-z-index:-1;
+height:100vh;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+transition:1s;
 }
 
-/* NAVBAR */
+#intro h1{
+font-size:3rem;
+letter-spacing:6px;
+}
+
+#intro span{
+color:#00f0ff;
+}
+
+/* ===== NAV ===== */
 nav{
 position:fixed;
 top:0;
@@ -40,7 +57,7 @@ width:100%;
 display:flex;
 justify-content:space-between;
 padding:20px 10%;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.5);
 backdrop-filter:blur(10px);
 z-index:1000;
 }
@@ -49,14 +66,21 @@ nav a{
 color:white;
 text-decoration:none;
 margin-left:20px;
-font-weight:500;
 }
 
 nav a:hover{
 color:#00f0ff;
 }
 
-/* HERO */
+/* ===== 3D BACKGROUND ===== */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* ===== HERO ===== */
 .hero{
 height:100vh;
 display:flex;
@@ -64,107 +88,109 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:0 20px;
 }
 
-.gradient-text{
-background:linear-gradient(90deg,#00f0ff,#9d00ff,#00f0ff);
-background-size:200%;
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation:gradientMove 4s linear infinite;
+.hero h1{
+font-size:4rem;
 }
 
-@keyframes gradientMove{
-0%{background-position:0%}
-100%{background-position:200%}
+.hero span{
+color:#00f0ff;
 }
 
-.btn{
-margin-top:30px;
-padding:15px 40px;
-background:#00f0ff;
-color:black;
-text-decoration:none;
-font-weight:700;
-border-radius:50px;
-transition:0.3s;
+.hero p{
+opacity:0.7;
+max-width:600px;
+margin-top:20px;
 }
 
-.btn:hover{
-transform:scale(1.05);
-background:white;
-}
-
-/* GLASS CARDS */
-.glass{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,0.1);
-border-radius:20px;
-padding:40px;
-transition:0.4s;
-}
-
-.glass:hover{
-transform:translateY(-10px);
-border-color:#00f0ff;
-}
-
+/* ===== SECTIONS ===== */
 section{
 padding:120px 10%;
 }
 
-/* GRID */
+h2{
+text-align:center;
+margin-bottom:40px;
+}
+
+/* ===== GRID ===== */
 .grid{
 display:flex;
 flex-wrap:wrap;
-gap:40px;
 justify-content:center;
-margin-top:60px;
+gap:30px;
 }
 
-/* CURSOR */
-.cursor{
-position:fixed;
-width:18px;
-height:18px;
+/* ===== CARDS ===== */
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:30px;
+width:300px;
+border-radius:20px;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#00f0ff;
+}
+
+/* ===== CONTACT CARD ===== */
+.contact-card{
+max-width:500px;
+margin:auto;
+background:rgba(255,255,255,0.05);
+padding:40px;
+border-radius:20px;
+text-align:center;
+border:1px solid rgba(255,255,255,0.1);
+transition:0.4s;
+}
+
+.contact-card:hover{
+transform:scale(1.05);
+border-color:#00f0ff;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+margin-top:20px;
+padding:12px 30px;
 background:#00f0ff;
-border-radius:50%;
-pointer-events:none;
-mix-blend-mode:difference;
-transform:translate(-50%,-50%);
-z-index:9999;
-}
-
-/* WHATSAPP BUTTON */
-.whatsapp{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#25D366;
-color:white;
-padding:15px 20px;
+color:black;
 border-radius:50px;
 text-decoration:none;
 font-weight:bold;
-box-shadow:0 0 15px rgba(0,0,0,0.4);
-z-index:1000;
+display:inline-block;
 }
 
-footer{
-text-align:center;
-padding:50px;
-opacity:0.6;
+/* ===== WHATSAPP ===== */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:15px 20px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+z-index:1000;
 }
 </style>
 </head>
 
 <body>
 
-<div id="particles-js"></div>
-<div class="cursor"></div>
+<!-- INTRO -->
+<div id="intro">
+<h1>KALIBRE <span>LABS</span></h1>
+<p>Loading experience...</p>
+</div>
 
+<!-- NAV -->
 <nav>
 <div><strong>KDL</strong></div>
 <div>
@@ -174,75 +200,149 @@ opacity:0.6;
 </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-<h1 class="gradient-text">Kalibre Digital Labs</h1>
-<p>High-performance websites. Strategic growth. Digital dominance.</p>
-<a href="#pricing" class="btn">View Plans</a>
+<h1>Kalibre <span>Digital Labs</span></h1>
+<p>We build high-performance websites, branding systems, and digital growth engines for modern businesses.</p>
 </section>
 
+<!-- SERVICES -->
 <section id="services">
-<h2>Our Services</h2>
+<h2>Services</h2>
 <div class="grid">
-<div class="glass">
+
+<div class="card">
 <h3>Website Development</h3>
-<p>Fast, responsive and conversion-focused websites.</p>
+<p>Fast, responsive websites designed to convert visitors into clients.</p>
 </div>
-<div class="glass">
+
+<div class="card">
 <h3>Branding</h3>
-<p>Identity systems that position your business for authority.</p>
+<p>Strong identity systems that position your business as premium.</p>
 </div>
-<div class="glass">
+
+<div class="card">
 <h3>Digital Growth</h3>
-<p>SEO and lead systems designed to scale revenue.</p>
+<p>SEO, funnels and automation systems to scale revenue.</p>
 </div>
+
 </div>
 </section>
 
+<!-- PRICING -->
 <section id="pricing">
-<h2>Our Plans</h2>
+<h2>Plans</h2>
 <div class="grid">
 
-<div class="glass">
+<div class="card">
 <h3>🟢 ENTRY</h3>
-<h2>R799/month</h2>
-<p>Perfect for small businesses starting online.</p>
+<p>R799/month</p>
+<ul>
+<li>Website</li>
+<li>Hosting</li>
+<li>SSL</li>
+<li>Basic SEO</li>
+<li>Contact Form</li>
+</ul>
 </div>
 
-<div class="glass">
+<div class="card">
 <h3>🔵 GROWTH</h3>
-<h2>R1,399/month</h2>
-<p>For businesses ready to scale visibility and leads.</p>
+<p>R1,399/month</p>
+<ul>
+<li>Everything in Entry</li>
+<li>WhatsApp Integration</li>
+<li>Booking System</li>
+<li>Lead Tracking</li>
+<li>Reports</li>
+</ul>
 </div>
 
-<div class="glass">
+<div class="card">
 <h3>🟣 PREMIUM</h3>
-<h2>R2,199/month</h2>
-<p>For aggressive local dominance and scaling.</p>
+<p>R2,199/month</p>
+<ul>
+<li>Everything in Growth</li>
+<li>Advanced SEO</li>
+<li>Funnels</li>
+<li>Competitor Analysis</li>
+<li>Strategy Calls</li>
+</ul>
 </div>
 
 </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
 <h2>Contact Us</h2>
+
+<div class="contact-card">
 <p>📧 support.kalibredigitallabs@gmail.com</p>
 <p>📱 +27 62 541 1075</p>
+<a class="btn" href="mailto:support.kalibredigitallabs@gmail.com">Email Us</a>
+</div>
+
 </section>
 
-<footer>
-© 2026 Kalibre Digital Labs
-</footer>
+<a class="whatsapp" href="https://wa.me/27625411075">WhatsApp</a>
 
-<a href="https://wa.me/27625411075" class="whatsapp">WhatsApp</a>
-
+<!-- ===== SCRIPTS ===== -->
 <script>
-particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
 
-const cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
+/* INTRO */
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+},3000);
+
+/* ===== 3D BACKGROUND ===== */
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+let renderer = new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+let geometry = new THREE.IcosahedronGeometry(2,1);
+let material = new THREE.MeshBasicMaterial({
+color:0x00f0ff,
+wireframe:true
 });
+
+let mesh = new THREE.Mesh(geometry,material);
+scene.add(mesh);
+
+camera.position.z = 5;
+
+/* mouse move */
+let mx=0,my=0;
+document.addEventListener("mousemove",(e)=>{
+mx = (e.clientX/window.innerWidth)*2-1;
+my = (e.clientY/window.innerHeight)*2-1;
+});
+
+function animate(){
+requestAnimationFrame(animate);
+mesh.rotation.y += 0.005 + mx*0.002;
+mesh.rotation.x += 0.005 + my*0.002;
+renderer.render(scene,camera);
+}
+animate();
+
+/* GSAP ANIMATION */
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray(".card").forEach(el=>{
+gsap.from(el,{
+opacity:0,
+y:50,
+duration:1,
+scrollTrigger:{
+trigger:el,
+start:"top 85%"
+}
+});
+});
+
 </script>
 
 </body>
