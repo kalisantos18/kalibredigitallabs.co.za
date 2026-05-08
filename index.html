@@ -23,7 +23,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ===== GALAXY BACKGROUND ===== */
+/* ===== BACKGROUND ===== */
 canvas{
 position:fixed;
 top:0;
@@ -72,42 +72,47 @@ transition:0.4s;
 cursor:pointer;
 backdrop-filter:blur(10px);
 position:relative;
+overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.02);
+transform:translateY(-10px) scale(1.03);
 border-color:#00f0ff;
-box-shadow:0 0 40px rgba(0,240,255,0.2);
+box-shadow:0 0 40px rgba(0,240,255,0.25);
 }
 
-/* ===== EXPAND ===== */
+/* EXPAND AREA */
 .expand{
-display:none;
-margin-top:20px;
-opacity:0.8;
+max-height:0;
+overflow:hidden;
+opacity:0;
+transition:0.5s ease;
+margin-top:10px;
 }
 
 .card.active .expand{
-display:block;
+max-height:200px;
+opacity:0.8;
 }
 
-/* ===== CONTACT ===== */
+/* ===== CONTACT 3D STAINLESS CARD ===== */
 .contact-card{
-background:rgba(255,255,255,0.05);
+width:320px;
 padding:40px;
-border-radius:25px;
-border:1px solid rgba(255,255,255,0.1);
-max-width:500px;
-transition:0.4s;
-cursor:pointer;
+border-radius:20px;
+background:linear-gradient(135deg,#1a1a1a,#2f2f2f,#1a1a1a);
+border:1px solid rgba(255,255,255,0.2);
+box-shadow:0 20px 60px rgba(0,0,0,0.7);
+transform-style:preserve-3d;
+transition:0.2s;
+position:relative;
 }
 
 .contact-card:hover{
-transform:scale(1.05) rotateX(5deg);
-box-shadow:0 0 50px rgba(0,240,255,0.2);
-border-color:#00f0ff;
+box-shadow:0 30px 80px rgba(0,240,255,0.15);
 }
 
+/* ===== BUTTON ===== */
 .btn{
 margin-top:20px;
 padding:12px 30px;
@@ -139,23 +144,23 @@ cursor:pointer;
 
 <div class="card">
 Web Development
-<div class="expand">Fast, scalable websites built for conversion.</div>
+<div class="expand">Fast, scalable, conversion-focused websites.</div>
 </div>
 
 <div class="card">
 Branding
-<div class="expand">Identity systems that position businesses as premium.</div>
+<div class="expand">Premium identity systems that position businesses.</div>
 </div>
 
 <div class="card">
 SEO & Growth
-<div class="expand">Ranking systems, funnels and automation engines.</div>
+<div class="expand">Ranking systems, funnels, automation & scaling.</div>
 </div>
 
 </div>
 </section>
 
-<!-- PRICING -->
+<!-- PRICING (TAP TO EXPAND) -->
 <section>
 <h1>Pricing</h1>
 
@@ -164,24 +169,32 @@ SEO & Growth
 <div class="card" onclick="toggle(this)">
 🟢 Entry
 <div class="expand">
-R799/month<br><br>
-✔ Website<br>✔ Hosting<br>✔ SEO<br>✔ Contact Form
+R799/month<br>
+✔ Website<br>
+✔ Hosting<br>
+✔ SEO<br>
+✔ Contact Form
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 🔵 Growth
 <div class="expand">
-R1399/month<br><br>
-✔ Booking system<br>✔ WhatsApp integration<br>✔ Lead tracking
+R1399/month<br>
+✔ Booking System<br>
+✔ WhatsApp Integration<br>
+✔ Lead Tracking
 </div>
 </div>
 
 <div class="card" onclick="toggle(this)">
 🟣 Premium
 <div class="expand">
-R2199/month<br><br>
-✔ Funnels<br>✔ Advanced SEO<br>✔ Strategy calls<br>✔ Scaling systems
+R2199/month<br>
+✔ Funnels<br>
+✔ Advanced SEO<br>
+✔ Strategy Calls<br>
+✔ Automation Systems
 </div>
 </div>
 
@@ -192,7 +205,7 @@ R2199/month<br><br>
 <section>
 <h1>Contact</h1>
 
-<div class="contact-card">
+<div class="contact-card" id="contactCard">
 <p>support@kalibredigitallabs.com</p>
 <p>+27 62 541 1075</p>
 <button class="btn">Send Email</button>
@@ -202,12 +215,12 @@ R2199/month<br><br>
 
 <script>
 
-/* EXPAND PRICING */
+/* ===== EXPAND PRICING ===== */
 function toggle(el){
 el.classList.toggle("active");
 }
 
-/* GALAXY BACKGROUND */
+/* ===== GALAXY ===== */
 let scene=new THREE.Scene();
 let camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
 let renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
@@ -216,7 +229,7 @@ renderer.setSize(innerWidth,innerHeight);
 let geo=new THREE.BufferGeometry();
 let pos=[];
 
-for(let i=0;i<6000;i++){
+for(let i=0;i<7000;i++){
 pos.push((Math.random()-0.5)*2000);
 pos.push((Math.random()-0.5)*2000);
 pos.push((Math.random()-0.5)*2000);
@@ -226,28 +239,44 @@ geo.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));
 
 let mat=new THREE.PointsMaterial({color:0x00f0ff,size:1});
 let stars=new THREE.Points(geo,mat);
-
 scene.add(stars);
+
 camera.position.z=5;
 
-/* MOUSE REACTIVE MOTION */
+/* ===== CURSOR PARALLAX (FIXED + STRONGER) ===== */
 let mouseX=0,mouseY=0;
 
 document.addEventListener("mousemove",(e)=>{
-mouseX = (e.clientX/window.innerWidth - 0.5) * 2;
-mouseY = (e.clientY/window.innerHeight - 0.5) * 2;
+mouseX = (e.clientX/window.innerWidth - 0.5);
+mouseY = (e.clientY/window.innerHeight - 0.5);
+
+/* CONTACT CARD 3D TILT */
+let card=document.getElementById("contactCard");
+if(card){
+card.style.transform = `
+rotateY(${mouseX * 20}deg)
+rotateX(${-mouseY * 20}deg)
+`;
+}
 });
 
+/* ===== ANIMATE GALAXY ===== */
 function animate(){
 requestAnimationFrame(animate);
 
-stars.rotation.y += 0.0005;
-stars.rotation.x += mouseY * 0.0001;
-stars.rotation.y += mouseX * 0.0001;
+stars.rotation.y += 0.0005 + mouseX * 0.0002;
+stars.rotation.x += mouseY * 0.0002;
 
 renderer.render(scene,camera);
 }
 animate();
+
+/* ===== RESIZE FIX ===== */
+window.addEventListener("resize",()=>{
+camera.aspect=innerWidth/innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(innerWidth,innerHeight);
+});
 
 </script>
 
