@@ -8,3 +8,72 @@
 <a href="contact.html">Contact</a>
 </div>
 </nav>
+<!DOCTYPE html>
+<html>
+<head>
+<title>KDL Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<style>
+body{margin:0;background:black;color:white;font-family:Poppins;}
+
+canvas{position:fixed;z-index:-1;}
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+h1{font-size:4rem;}
+span{color:#00f0ff;}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="pricing.html">Pricing</a>
+<a href="portfolio.html">Portfolio</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="hero">
+<h1>Kalibre <span>Digital Labs</span></h1>
+<p>We build digital systems that scale businesses.</p>
+</div>
+
+<canvas id="bg"></canvas>
+
+<script>
+let scene=new THREE.Scene();
+let camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
+let renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
+renderer.setSize(innerWidth,innerHeight);
+
+let geo=new THREE.IcosahedronGeometry(2,1);
+let mat=new THREE.MeshBasicMaterial({color:0x00f0ff,wireframe:true});
+let mesh=new THREE.Mesh(geo,mat);
+scene.add(mesh);
+
+camera.position.z=5;
+
+function animate(){
+requestAnimationFrame(animate);
+mesh.rotation.x+=0.01;
+mesh.rotation.y+=0.01;
+renderer.render(scene,camera);
+}
+animate();
+</script>
+
+</body>
+</html>
