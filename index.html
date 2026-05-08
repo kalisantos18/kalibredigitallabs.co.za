@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>KDL Scroll Experience</title>
+<title>Kalibre Digital Labs</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
 
@@ -18,9 +18,9 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-overflow:hidden;
-background:black;
+background:#050505;
 color:white;
+overflow:hidden;
 }
 
 /* ===== GALAXY BACKGROUND ===== */
@@ -31,14 +31,14 @@ left:0;
 z-index:-1;
 }
 
-/* ===== SCROLL CONTAINER ===== */
+/* ===== SCROLL SYSTEM ===== */
 .container{
 height:100vh;
 overflow-y:scroll;
 scroll-snap-type:y mandatory;
 }
 
-/* ===== PAGES ===== */
+/* ===== EACH PAGE ===== */
 .page{
 height:100vh;
 scroll-snap-align:start;
@@ -65,73 +65,133 @@ max-width:600px;
 margin-top:20px;
 }
 
-/* ===== CARDS ===== */
+/* ===== GRID ===== */
 .grid{
 display:flex;
-gap:20px;
-margin-top:40px;
 flex-wrap:wrap;
 justify-content:center;
+gap:20px;
+margin-top:40px;
 }
 
+/* ===== CARD ===== */
 .card{
 background:rgba(255,255,255,0.05);
-padding:25px;
-width:250px;
-border-radius:15px;
 border:1px solid rgba(255,255,255,0.1);
+padding:25px;
+width:260px;
+border-radius:15px;
 transition:0.4s;
+backdrop-filter:blur(10px);
 }
 
 .card:hover{
 transform:scale(1.05);
 border-color:#00f0ff;
+box-shadow:0 0 25px rgba(0,240,255,0.2);
+}
+
+/* ===== PRICING COLORS ===== */
+.card h3{
+color:#00f0ff;
+margin-bottom:10px;
+}
+
+/* ===== SMALL TEXT ===== */
+small{
+opacity:0.6;
+}
+
+/* ===== WHATSAPP ===== */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:15px 20px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+z-index:1000;
 }
 </style>
 </head>
 
 <body>
 
-<!-- GALAXY -->
+<!-- GALAXY BACKGROUND -->
 <canvas id="bg"></canvas>
 
-<!-- SCROLL PAGES -->
+<!-- SCROLL CONTAINER -->
 <div class="container">
 
 <!-- HOME -->
 <section class="page">
 <h1>Kalibre <span>Digital Labs</span></h1>
-<p>We build high-performance digital systems that scale businesses.</p>
+<p>We build high-performance websites, branding systems and digital growth engines that scale businesses.</p>
 </section>
 
 <!-- SERVICES -->
 <section class="page">
 <h1>Services</h1>
+
 <div class="grid">
-<div class="card">Web Development</div>
-<div class="card">Branding</div>
-<div class="card">SEO Growth</div>
+<div class="card">
+<h3>Website Development</h3>
+<small>Fast, modern, conversion-focused websites.</small>
 </div>
+
+<div class="card">
+<h3>Branding</h3>
+<small>Identity systems that position you as premium.</small>
+</div>
+
+<div class="card">
+<h3>Digital Growth</h3>
+<small>SEO + funnels + automation systems.</small>
+</div>
+</div>
+
 </section>
 
 <!-- PRICING -->
 <section class="page">
 <h1>Pricing</h1>
+
 <div class="grid">
-<div class="card">Entry R799</div>
-<div class="card">Growth R1399</div>
-<div class="card">Premium R2199</div>
+
+<div class="card">
+<h3>🟢 Entry</h3>
+<p>R799/month</p>
+<small>Website + Hosting + SEO</small>
 </div>
+
+<div class="card">
+<h3>🔵 Growth</h3>
+<p>R1399/month</p>
+<small>Lead systems + WhatsApp + Booking</small>
+</div>
+
+<div class="card">
+<h3>🟣 Premium</h3>
+<p>R2199/month</p>
+<small>Funnels + SEO + Strategy + Scaling</small>
+</div>
+
+</div>
+
 </section>
 
 <!-- PORTFOLIO -->
 <section class="page">
 <h1>Portfolio</h1>
+
 <div class="grid">
 <div class="card">Project A</div>
 <div class="card">Project B</div>
 <div class="card">Project C</div>
 </div>
+
 </section>
 
 <!-- CONTACT -->
@@ -143,37 +203,64 @@ border-color:#00f0ff;
 
 </div>
 
-<!-- GALAXY SCRIPT -->
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/27625411075">WhatsApp</a>
+
+<!-- ===== THREE.JS GALAXY ===== -->
 <script>
 
-let scene=new THREE.Scene();
-let camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-let renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
+let renderer = new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
+
 renderer.setSize(innerWidth,innerHeight);
 
-let geo=new THREE.BufferGeometry();
-let vertices=[];
+let geometry = new THREE.BufferGeometry();
+let vertices = [];
 
-for(let i=0;i<5000;i++){
+for(let i=0;i<6000;i++){
 vertices.push((Math.random()-0.5)*2000);
 vertices.push((Math.random()-0.5)*2000);
 vertices.push((Math.random()-0.5)*2000);
 }
 
-geo.setAttribute("position",new THREE.Float32BufferAttribute(vertices,3));
+geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
 
-let mat=new THREE.PointsMaterial({color:0x00f0ff,size:1});
-let stars=new THREE.Points(geo,mat);
+let material = new THREE.PointsMaterial({
+color:0x00f0ff,
+size:1
+});
 
+let stars = new THREE.Points(geometry,material);
 scene.add(stars);
-camera.position.z=5;
+
+camera.position.z = 5;
+
+/* mouse movement */
+let mx = 0, my = 0;
+
+document.addEventListener("mousemove",(e)=>{
+mx = (e.clientX/window.innerWidth)*2-1;
+my = (e.clientY/window.innerHeight)*2-1;
+});
 
 function animate(){
 requestAnimationFrame(animate);
-stars.rotation.y+=0.0005;
+
+stars.rotation.y += 0.0005;
+stars.rotation.x += mx * 0.0002;
+
 renderer.render(scene,camera);
 }
+
 animate();
+
+/* resize fix */
+window.addEventListener('resize',()=>{
+camera.aspect = innerWidth/innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(innerWidth,innerHeight);
+});
 
 </script>
 
