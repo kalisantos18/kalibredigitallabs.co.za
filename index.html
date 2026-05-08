@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Kalibre Digital Labs</title>
+<title>KDL Level 7</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <style>
 *{
@@ -20,34 +22,24 @@ font-family:'Poppins',sans-serif;
 body{
 background:#050505;
 color:white;
-overflow:hidden;
+overflow-x:hidden;
 }
 
-/* ===== GALAXY BACKGROUND ===== */
+/* ===== GALAXY ===== */
 canvas{
 position:fixed;
 top:0;
 left:0;
-z-index:-1;
+z-index:-2;
 }
 
-/* ===== SCROLL SYSTEM ===== */
-.container{
-height:100vh;
-overflow-y:scroll;
-scroll-snap-type:y mandatory;
-}
-
-/* ===== EACH PAGE ===== */
-.page{
-height:100vh;
-scroll-snap-align:start;
+/* ===== SECTIONS (LONG SCROLL) ===== */
+section{
+min-height:120vh;
+padding:120px 10%;
 display:flex;
 flex-direction:column;
 justify-content:center;
-align-items:center;
-text-align:center;
-padding:40px;
 }
 
 /* ===== TEXT ===== */
@@ -55,212 +47,210 @@ h1{
 font-size:4rem;
 }
 
-span{
-color:#00f0ff;
-}
+span{color:#00f0ff;}
 
 p{
+max-width:700px;
 opacity:0.7;
-max-width:600px;
 margin-top:20px;
 }
 
 /* ===== GRID ===== */
 .grid{
 display:flex;
+gap:30px;
 flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-margin-top:40px;
+margin-top:60px;
 }
 
-/* ===== CARD ===== */
+/* ===== CARDS ===== */
 .card{
 background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.1);
-padding:25px;
-width:260px;
-border-radius:15px;
+padding:30px;
+width:280px;
+border-radius:20px;
 transition:0.4s;
+cursor:pointer;
 backdrop-filter:blur(10px);
+position:relative;
 }
 
 .card:hover{
-transform:scale(1.05);
+transform:translateY(-10px) scale(1.02);
 border-color:#00f0ff;
-box-shadow:0 0 25px rgba(0,240,255,0.2);
+box-shadow:0 0 40px rgba(0,240,255,0.2);
 }
 
-/* ===== PRICING COLORS ===== */
-.card h3{
-color:#00f0ff;
-margin-bottom:10px;
+/* ===== EXPANDED PLAN ===== */
+.expand{
+display:none;
+margin-top:20px;
+opacity:0.8;
 }
 
-/* ===== SMALL TEXT ===== */
-small{
-opacity:0.6;
+.card.active .expand{
+display:block;
 }
 
-/* ===== WHATSAPP ===== */
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-padding:15px 20px;
+/* ===== CONTACT CARD ===== */
+.contact-card{
+background:rgba(255,255,255,0.05);
+padding:40px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,0.1);
+max-width:500px;
+transition:0.4s;
+cursor:pointer;
+}
+
+.contact-card:hover{
+transform:scale(1.05) rotateX(5deg);
+box-shadow:0 0 50px rgba(0,240,255,0.2);
+border-color:#00f0ff;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+margin-top:20px;
+padding:12px 30px;
+background:#00f0ff;
+color:black;
+border:none;
 border-radius:50px;
-color:white;
-text-decoration:none;
-z-index:1000;
+font-weight:bold;
+cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- GALAXY BACKGROUND -->
 <canvas id="bg"></canvas>
 
-<!-- SCROLL CONTAINER -->
-<div class="container">
-
 <!-- HOME -->
-<section class="page">
+<section>
 <h1>Kalibre <span>Digital Labs</span></h1>
-<p>We build high-performance websites, branding systems and digital growth engines that scale businesses.</p>
+<p>We build high-performance digital systems that turn attention into revenue.</p>
 </section>
 
 <!-- SERVICES -->
-<section class="page">
+<section>
 <h1>Services</h1>
 
 <div class="grid">
+
 <div class="card">
-<h3>Website Development</h3>
-<small>Fast, modern, conversion-focused websites.</small>
+Web Development
+<div class="expand">Fast, scalable websites built for conversion.</div>
 </div>
 
 <div class="card">
-<h3>Branding</h3>
-<small>Identity systems that position you as premium.</small>
+Branding
+<div class="expand">Identity systems that position businesses as premium.</div>
 </div>
 
 <div class="card">
-<h3>Digital Growth</h3>
-<small>SEO + funnels + automation systems.</small>
-</div>
+SEO & Growth
+<div class="expand">Ranking systems, funnels and automation engines.</div>
 </div>
 
+</div>
 </section>
 
-<!-- PRICING -->
-<section class="page">
+<!-- PRICING (EXPANDABLE) -->
+<section>
 <h1>Pricing</h1>
 
 <div class="grid">
 
-<div class="card">
-<h3>🟢 Entry</h3>
-<p>R799/month</p>
-<small>Website + Hosting + SEO</small>
+<div class="card" onclick="toggle(this)">
+🟢 Entry
+<div class="expand">
+R799/month<br><br>
+✔ Website<br>✔ Hosting<br>✔ SEO<br>✔ Contact Form
+</div>
 </div>
 
-<div class="card">
-<h3>🔵 Growth</h3>
-<p>R1399/month</p>
-<small>Lead systems + WhatsApp + Booking</small>
+<div class="card" onclick="toggle(this)">
+🔵 Growth
+<div class="expand">
+R1399/month<br><br>
+✔ Booking system<br>✔ WhatsApp integration<br>✔ Lead tracking
+</div>
 </div>
 
-<div class="card">
-<h3>🟣 Premium</h3>
-<p>R2199/month</p>
-<small>Funnels + SEO + Strategy + Scaling</small>
+<div class="card" onclick="toggle(this)">
+🟣 Premium
+<div class="expand">
+R2199/month<br><br>
+✔ Funnels<br>✔ Advanced SEO<br>✔ Strategy calls<br>✔ Scaling systems
+</div>
 </div>
 
 </div>
-
-</section>
-
-<!-- PORTFOLIO -->
-<section class="page">
-<h1>Portfolio</h1>
-
-<div class="grid">
-<div class="card">Project A</div>
-<div class="card">Project B</div>
-<div class="card">Project C</div>
-</div>
-
 </section>
 
 <!-- CONTACT -->
-<section class="page">
+<section>
 <h1>Contact</h1>
+
+<div class="contact-card">
 <p>support@kalibredigitallabs.com</p>
 <p>+27 62 541 1075</p>
-</section>
-
+<button class="btn">Send Email</button>
 </div>
 
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/27625411075">WhatsApp</a>
+</section>
 
-<!-- ===== THREE.JS GALAXY ===== -->
 <script>
 
-let scene = new THREE.Scene();
-let camera = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-let renderer = new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
-
-renderer.setSize(innerWidth,innerHeight);
-
-let geometry = new THREE.BufferGeometry();
-let vertices = [];
-
-for(let i=0;i<6000;i++){
-vertices.push((Math.random()-0.5)*2000);
-vertices.push((Math.random()-0.5)*2000);
-vertices.push((Math.random()-0.5)*2000);
+/* ===== EXPAND CARDS ===== */
+function toggle(el){
+el.classList.toggle("active");
 }
 
-geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+/* ===== GALAXY ===== */
+let scene=new THREE.Scene();
+let camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
+let renderer=new THREE.WebGLRenderer({canvas:document.getElementById("bg"),alpha:true});
+renderer.setSize(innerWidth,innerHeight);
 
-let material = new THREE.PointsMaterial({
-color:0x00f0ff,
-size:1
-});
+let geo=new THREE.BufferGeometry();
+let pos=[];
 
-let stars = new THREE.Points(geometry,material);
+for(let i=0;i<6000;i++){
+pos.push((Math.random()-0.5)*2000);
+pos.push((Math.random()-0.5)*2000);
+pos.push((Math.random()-0.5)*2000);
+}
+
+geo.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));
+
+let mat=new THREE.PointsMaterial({color:0x00f0ff,size:1});
+let stars=new THREE.Points(geo,mat);
+
 scene.add(stars);
+camera.position.z=5;
 
-camera.position.z = 5;
-
-/* mouse movement */
-let mx = 0, my = 0;
+/* ===== MOUSE REACTIVE MOTION (FIXED) ===== */
+let mouseX=0,mouseY=0;
 
 document.addEventListener("mousemove",(e)=>{
-mx = (e.clientX/window.innerWidth)*2-1;
-my = (e.clientY/window.innerHeight)*2-1;
+mouseX = (e.clientX/window.innerWidth - 0.5) * 2;
+mouseY = (e.clientY/window.innerHeight - 0.5) * 2;
 });
 
 function animate(){
 requestAnimationFrame(animate);
 
 stars.rotation.y += 0.0005;
-stars.rotation.x += mx * 0.0002;
+stars.rotation.x += mouseY * 0.0001;
+stars.rotation.y += mouseX * 0.0001;
 
 renderer.render(scene,camera);
 }
-
 animate();
-
-/* resize fix */
-window.addEventListener('resize',()=>{
-camera.aspect = innerWidth/innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize(innerWidth,innerHeight);
-});
 
 </script>
 
