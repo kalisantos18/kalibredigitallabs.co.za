@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kalibre Digital Labs</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
 <style>
 *{
@@ -14,13 +15,48 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:#0f0f0f;
+background:#0b0b0b;
 color:white;
+overflow-x:hidden;
 }
 
+/* PARTICLES */
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:20px 10%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:500;
+}
+
+nav a:hover{
+color:#00f0ff;
+}
+
+/* HERO */
 .hero{
 height:100vh;
 display:flex;
@@ -28,108 +64,186 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:20px;
-background:linear-gradient(135deg,#111,#1f1f1f);
+padding:0 20px;
 }
 
-.hero h1{
-font-size:3.5rem;
-font-weight:800;
+.gradient-text{
+background:linear-gradient(90deg,#00f0ff,#9d00ff,#00f0ff);
+background-size:200%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:gradientMove 4s linear infinite;
 }
 
-.hero span{
-color:#00f0ff;
-}
-
-.hero p{
-margin-top:20px;
-font-size:1.2rem;
-opacity:0.8;
-max-width:600px;
+@keyframes gradientMove{
+0%{background-position:0%}
+100%{background-position:200%}
 }
 
 .btn{
 margin-top:30px;
-padding:15px 35px;
+padding:15px 40px;
 background:#00f0ff;
 color:black;
 text-decoration:none;
-font-weight:600;
+font-weight:700;
 border-radius:50px;
 transition:0.3s;
 }
 
 .btn:hover{
+transform:scale(1.05);
 background:white;
 }
 
-.section{
-padding:80px 20px;
-text-align:center;
+/* GLASS CARDS */
+.glass{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+border-radius:20px;
+padding:40px;
+transition:0.4s;
 }
 
-.services{
+.glass:hover{
+transform:translateY(-10px);
+border-color:#00f0ff;
+}
+
+section{
+padding:120px 10%;
+}
+
+/* GRID */
+.grid{
 display:flex;
 flex-wrap:wrap;
+gap:40px;
 justify-content:center;
-gap:30px;
-margin-top:50px;
+margin-top:60px;
 }
 
-.card{
-background:#1a1a1a;
-padding:30px;
-width:280px;
-border-radius:15px;
-transition:0.3s;
+/* CURSOR */
+.cursor{
+position:fixed;
+width:18px;
+height:18px;
+background:#00f0ff;
+border-radius:50%;
+pointer-events:none;
+mix-blend-mode:difference;
+transform:translate(-50%,-50%);
+z-index:9999;
 }
 
-.card:hover{
-transform:translateY(-10px);
-background:#222;
+/* WHATSAPP BUTTON */
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+color:white;
+padding:15px 20px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+z-index:1000;
 }
 
 footer{
-padding:40px;
 text-align:center;
-background:#111;
-opacity:0.7;
+padding:50px;
+opacity:0.6;
 }
 </style>
 </head>
 
 <body>
 
+<div id="particles-js"></div>
+<div class="cursor"></div>
+
+<nav>
+<div><strong>KDL</strong></div>
+<div>
+<a href="#services">Services</a>
+<a href="#pricing">Pricing</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
 <section class="hero">
-<h1>Kalibre <span>Digital Labs</span></h1>
-<p>We build powerful websites that help businesses grow, attract customers and dominate online.</p>
-<a href="#services" class="btn">Our Services</a>
+<h1 class="gradient-text">Kalibre Digital Labs</h1>
+<p>High-performance websites. Strategic growth. Digital dominance.</p>
+<a href="#pricing" class="btn">View Plans</a>
 </section>
 
-<section class="section" id="services">
-<h2>What We Do</h2>
-
-<div class="services">
-<div class="card">
+<section id="services">
+<h2>Our Services</h2>
+<div class="grid">
+<div class="glass">
 <h3>Website Development</h3>
-<p>Modern, responsive websites built to convert visitors into clients.</p>
+<p>Fast, responsive and conversion-focused websites.</p>
 </div>
-
-<div class="card">
+<div class="glass">
 <h3>Branding</h3>
-<p>Logos, identity systems and visuals that make your brand unforgettable.</p>
+<p>Identity systems that position your business for authority.</p>
+</div>
+<div class="glass">
+<h3>Digital Growth</h3>
+<p>SEO and lead systems designed to scale revenue.</p>
+</div>
+</div>
+</section>
+
+<section id="pricing">
+<h2>Our Plans</h2>
+<div class="grid">
+
+<div class="glass">
+<h3>🟢 ENTRY</h3>
+<h2>R799/month</h2>
+<p>Perfect for small businesses starting online.</p>
 </div>
 
-<div class="card">
-<h3>Digital Growth</h3>
-<p>Strategies that increase traffic, leads and sales.</p>
+<div class="glass">
+<h3>🔵 GROWTH</h3>
+<h2>R1,399/month</h2>
+<p>For businesses ready to scale visibility and leads.</p>
 </div>
+
+<div class="glass">
+<h3>🟣 PREMIUM</h3>
+<h2>R2,199/month</h2>
+<p>For aggressive local dominance and scaling.</p>
 </div>
+
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2>
+<p>📧 support.kalibredigitallabs@gmail.com</p>
+<p>📱 +27 62 541 1075</p>
 </section>
 
 <footer>
-© 2026 Kalibre Digital Labs. All rights reserved.
+© 2026 Kalibre Digital Labs
 </footer>
+
+<a href="https://wa.me/27625411075" class="whatsapp">WhatsApp</a>
+
+<script>
+particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+</script>
 
 </body>
 </html>
