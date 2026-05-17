@@ -317,6 +317,7 @@ footer{
     <a href="#services">Services</a>
     <a href="#seo">SEO</a>
     <a href="#branding">Branding</a>
+    <a href="#effects">Effects</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
@@ -545,7 +546,318 @@ footer{
     </div>
   </div>
 </section>
+<!-- ===== KALIBRE DIGITAL LABS — EFFECTS & ANIMATIONS SHOWCASE ===== -->
+<!-- Paste between your #branding section and #pricing section -->
+<!-- Also add  <a href="#effects">Effects</a>  to your nav links  -->
 
+<style>
+#effects{min-height:auto;padding:100px 8% 80px;display:flex;flex-direction:column;justify-content:center;position:relative;}
+
+.effects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px;}
+@media(max-width:900px){.effects-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.effects-grid{grid-template-columns:1fr;}}
+
+.fx-card{
+  border-radius:20px;border:1px solid rgba(255,255,255,0.07);
+  background:rgba(255,255,255,0.02);overflow:hidden;position:relative;
+  cursor:pointer;transition:border-color 0.3s,transform 0.3s;
+  min-height:200px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.fx-card:hover{transform:translateY(-4px);border-color:rgba(0,240,255,0.3);}
+
+.fx-label{
+  position:absolute;bottom:14px;left:18px;right:18px;
+  display:flex;justify-content:space-between;align-items:center;z-index:10;
+}
+.fx-name{font-family:'Poppins',sans-serif;font-size:0.76rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.fx-tag{font-family:'Poppins',sans-serif;font-size:0.66rem;font-weight:600;padding:3px 10px;border-radius:50px;background:rgba(0,240,255,0.07);border:1px solid rgba(0,240,255,0.18);color:rgba(0,240,255,0.65);letter-spacing:0.5px;}
+
+/* 1 PARTICLE */
+#fxParticles{background:#060610;}
+#fxParticles canvas{position:absolute;inset:0;}
+
+/* 2 GLITCH */
+#fxGlitch{background:#050505;font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;color:#fff;letter-spacing:-1px;text-align:center;padding:20px;user-select:none;}
+.gd{position:relative;display:inline-block;}
+.gd::before,.gd::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;}
+.gd::before{color:#00f0ff;animation:gd1 3s infinite;clip-path:polygon(0 18%,100% 18%,100% 38%,0 38%);}
+.gd::after{color:#9b5de5;animation:gd2 3s infinite;clip-path:polygon(0 58%,100% 58%,100% 78%,0 78%);}
+@keyframes gd1{0%,88%,100%{transform:translate(0);}90%{transform:translate(-3px,1px);}92%{transform:translate(3px,-1px);}94%{transform:translate(-2px,2px);}96%{transform:translate(0);}}
+@keyframes gd2{0%,90%,100%{transform:translate(0);}91%{transform:translate(3px,-1px);}93%{transform:translate(-3px,1px);}95%{transform:translate(2px,2px);}97%{transform:translate(0);}}
+
+/* 3 MAGNETIC */
+#fxMagnetic{background:#080810;flex-direction:column;gap:10px;}
+.mag-btn{padding:14px 36px;border-radius:50px;background:transparent;border:1.5px solid rgba(0,240,255,0.4);color:#00f0ff;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:1px;cursor:pointer;transition:background 0.3s,box-shadow 0.3s,border-color 0.3s;will-change:transform;}
+.mag-btn:hover{background:rgba(0,240,255,0.06);box-shadow:0 0 40px rgba(0,240,255,0.2);border-color:rgba(0,240,255,0.85);}
+.mag-hint{font-family:'Poppins',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.22);letter-spacing:2px;text-transform:uppercase;}
+
+/* 4 TYPEWRITER */
+#fxTypewriter{background:#050508;flex-direction:column;gap:6px;padding:20px;}
+.tw-pre{font-family:'Poppins',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.32);letter-spacing:2px;text-transform:uppercase;}
+.tw-text{font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:900;color:#00f0ff;min-height:2rem;display:flex;align-items:center;}
+.tw-cur{display:inline-block;width:3px;height:1.7rem;background:#00f0ff;border-radius:2px;animation:twb 0.8s infinite;margin-left:3px;flex-shrink:0;}
+@keyframes twb{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+
+/* 5 BLOB */
+#fxBlob{background:#040408;}
+#fxBlob svg{width:130px;height:130px;}
+.blob-fill{animation:blobm 6s ease-in-out infinite;fill:url(#blobGradFill);opacity:0.14;}
+.blob-stroke{animation:blobm 6s ease-in-out infinite;fill:none;stroke:url(#blobGrad);stroke-width:1.5;}
+@keyframes blobm{
+  0%,100%{d:path("M70,20 C100,10 130,40 130,70 C130,100 110,125 80,128 C50,131 15,110 12,80 C9,50 30,15 70,20 Z");}
+  25%{d:path("M75,15 C115,5 138,45 135,75 C132,105 100,135 70,132 C40,129 8,105 10,72 C12,39 35,25 75,15 Z");}
+  50%{d:path("M65,18 C95,8 128,35 132,68 C136,101 112,130 78,132 C44,134 10,108 8,76 C6,44 35,28 65,18 Z");}
+  75%{d:path("M72,22 C108,12 136,42 134,74 C132,106 105,132 74,130 C43,128 10,102 10,70 C10,38 36,32 72,22 Z");}
+}
+
+/* 6 COUNTER */
+#fxCounter{background:#04040c;flex-direction:column;gap:4px;padding:20px;}
+.ctr-num{font-family:'Poppins',sans-serif;font-size:3.4rem;font-weight:900;color:#00f0ff;line-height:1;text-shadow:0 0 20px rgba(0,240,255,0.5),0 0 60px rgba(0,240,255,0.15);letter-spacing:-2px;}
+.ctr-sfx{font-size:2rem;color:#9b5de5;text-shadow:0 0 20px rgba(155,93,229,0.5);}
+.ctr-lbl{font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+
+/* 7 SCANLINE */
+#fxScanline{background:#020208;flex-direction:column;gap:8px;}
+.scan-overlay{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,240,255,0.025) 2px,rgba(0,240,255,0.025) 4px);pointer-events:none;}
+.scan-bar{position:absolute;left:0;right:0;height:2px;background:rgba(0,240,255,0.12);animation:scanmv 4s linear infinite;pointer-events:none;}
+@keyframes scanmv{0%{top:-2px;}100%{top:100%;}}
+.retro-sm{font-family:'Courier New',monospace;font-size:0.72rem;color:rgba(0,240,255,0.65);letter-spacing:2px;text-transform:uppercase;z-index:2;animation:rflk 5s infinite;}
+.retro-lg{font-family:'Courier New',monospace;font-size:1.5rem;font-weight:700;color:#00f0ff;letter-spacing:4px;z-index:2;text-shadow:0 0 10px rgba(0,240,255,0.5);}
+@keyframes rflk{0%,95%,100%{opacity:0.7;}96%{opacity:0.25;}98%{opacity:0.65;}}
+
+/* 8 RIPPLE */
+#fxAurora{background:#030308;cursor:crosshair;}
+#fxAurora canvas{position:absolute;inset:0;pointer-events:none;}
+.aurora-hint{font-family:'Poppins',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.22);letter-spacing:2px;text-transform:uppercase;z-index:2;pointer-events:none;transition:opacity 0.5s;}
+
+/* 9 GRID REVEAL */
+#fxGridReveal{background:#040408;}
+.gr-inner{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(5,1fr);position:absolute;inset:0;}
+.gr-cell{border:1px solid rgba(0,240,255,0.03);background:transparent;transition:background 0.3s,border-color 0.3s;}
+.gr-cell.lit{background:rgba(0,240,255,0.07);border-color:rgba(0,240,255,0.13);}
+.gr-text{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:900;color:rgba(255,255,255,0.8);letter-spacing:3px;text-transform:uppercase;z-index:5;position:relative;pointer-events:none;}
+
+/* CTA */
+.effects-cta{
+  margin-top:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;
+  padding:28px 36px;border-radius:20px;background:rgba(0,240,255,0.03);border:1px solid rgba(0,240,255,0.1);
+}
+.effects-cta p{font-family:'Poppins',sans-serif;font-size:0.88rem;color:rgba(255,255,255,0.48);line-height:1.7;max-width:500px;margin:0;}
+.effects-cta p strong{color:rgba(255,255,255,0.82);}
+</style>
+
+<section id="effects" style="min-height:auto;padding-bottom:80px;">
+  <div class="reveal">
+    <div class="section-label">What We Can Build</div>
+    <h2>Effects &amp; <span style="color:var(--cyan)">Animations</span></h2>
+    <p class="subtitle">Live previews of effects we can add to your website — all coded custom, no template plugins.</p>
+  </div>
+
+  <div class="effects-grid reveal">
+
+    <!-- 1 PARTICLE FIELD -->
+    <div class="fx-card" id="fxParticles">
+      <canvas id="particleCanvas"></canvas>
+      <div class="fx-label"><span class="fx-name">Particle field</span><span class="fx-tag">Interactive</span></div>
+    </div>
+
+    <!-- 2 GLITCH TEXT -->
+    <div class="fx-card" id="fxGlitch">
+      <div class="gd" data-text="KALIBRE">KALIBRE</div>
+      <div class="fx-label"><span class="fx-name">Glitch text</span><span class="fx-tag">CSS</span></div>
+    </div>
+
+    <!-- 3 MAGNETIC BUTTON -->
+    <div class="fx-card" id="fxMagnetic">
+      <button class="mag-btn" id="magBtn">Get Started</button>
+      <span class="mag-hint">hover me</span>
+      <div class="fx-label"><span class="fx-name">Magnetic button</span><span class="fx-tag">JS</span></div>
+    </div>
+
+    <!-- 4 TYPEWRITER -->
+    <div class="fx-card" id="fxTypewriter">
+      <div class="tw-pre">We build</div>
+      <div class="tw-text"><span id="twOut"></span><span class="tw-cur"></span></div>
+      <div class="fx-label"><span class="fx-name">Typewriter</span><span class="fx-tag">JS</span></div>
+    </div>
+
+    <!-- 5 MORPHING BLOB -->
+    <div class="fx-card" id="fxBlob">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="blobGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#9b5de5"/>
+          </linearGradient>
+          <linearGradient id="blobGradFill" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#9b5de5"/>
+          </linearGradient>
+        </defs>
+        <path class="blob-fill" d="M70,20 C100,10 130,40 130,70 C130,100 110,125 80,128 C50,131 15,110 12,80 C9,50 30,15 70,20 Z"/>
+        <path class="blob-stroke" d="M70,20 C100,10 130,40 130,70 C130,100 110,125 80,128 C50,131 15,110 12,80 C9,50 30,15 70,20 Z"/>
+      </svg>
+      <div class="fx-label"><span class="fx-name">Morphing blob</span><span class="fx-tag">SVG</span></div>
+    </div>
+
+    <!-- 6 NEON COUNTER -->
+    <div class="fx-card" id="fxCounter">
+      <div class="ctr-num"><span id="ctrVal">0</span><span class="ctr-sfx">%</span></div>
+      <div class="ctr-lbl">Client satisfaction</div>
+      <div class="fx-label"><span class="fx-name">Neon counter</span><span class="fx-tag">Scroll</span></div>
+    </div>
+
+    <!-- 7 RETRO SCANLINE -->
+    <div class="fx-card" id="fxScanline">
+      <div class="scan-overlay"></div>
+      <div class="scan-bar"></div>
+      <div class="retro-sm">// system online</div>
+      <div class="retro-lg">DIGITAL</div>
+      <div class="retro-sm">kalibre_labs_v2.0</div>
+      <div class="fx-label"><span class="fx-name">Retro scanline</span><span class="fx-tag">CSS</span></div>
+    </div>
+
+    <!-- 8 AURORA RIPPLE -->
+    <div class="fx-card" id="fxAurora">
+      <canvas id="auroraCanvas"></canvas>
+      <span class="aurora-hint" id="auroraHint">Click to ripple</span>
+      <div class="fx-label"><span class="fx-name">Aurora ripple</span><span class="fx-tag">Canvas</span></div>
+    </div>
+
+    <!-- 9 GRID REVEAL -->
+    <div class="fx-card" id="fxGridReveal">
+      <div class="gr-inner" id="grInner"></div>
+      <div class="gr-text" id="grText">LOADING</div>
+      <div class="fx-label"><span class="fx-name">Grid reveal</span><span class="fx-tag">JS</span></div>
+    </div>
+
+  </div>
+
+  <div class="effects-cta reveal">
+    <p><strong>Want any of these on your site?</strong> Every effect shown here can be built into your pages — custom coded to match your brand, colours, and content.</p>
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Build It</button>
+  </div>
+</section>
+
+<script>
+(function(){
+
+  /* 1 — PARTICLE FIELD */
+  var pc=document.getElementById('particleCanvas'), fc=document.getElementById('fxParticles');
+  if(pc&&fc){
+    var ctx=pc.getContext('2d'),pts=[],pmx=-999,pmy=-999,PW,PH;
+    function resizeP(){PW=pc.width=fc.offsetWidth;PH=pc.height=fc.offsetHeight;}
+    resizeP();new ResizeObserver(resizeP).observe(fc);
+    for(var i=0;i<55;i++)pts.push({x:Math.random()*800,y:Math.random()*300,vx:(Math.random()-.5)*0.4,vy:(Math.random()-.5)*0.4,r:1+Math.random()*1.5});
+    fc.addEventListener('mousemove',function(e){var r=fc.getBoundingClientRect();pmx=e.clientX-r.left;pmy=e.clientY-r.top;});
+    fc.addEventListener('mouseleave',function(){pmx=-999;pmy=-999;});
+    (function ploop(){
+      requestAnimationFrame(ploop);
+      ctx.clearRect(0,0,PW,PH);
+      pts.forEach(function(p){
+        p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0)p.x=PW;if(p.x>PW)p.x=0;if(p.y<0)p.y=PH;if(p.y>PH)p.y=0;
+        var dx=p.x-pmx,dy=p.y-pmy,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<80){p.x+=dx/dist*0.8;p.y+=dy/dist*0.8;}
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,240,255,0.75)';ctx.fill();
+      });
+      for(var a=0;a<pts.length;a++)for(var b=a+1;b<pts.length;b++){
+        var dx=pts[a].x-pts[b].x,dy=pts[a].y-pts[b].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<90){ctx.beginPath();ctx.moveTo(pts[a].x,pts[a].y);ctx.lineTo(pts[b].x,pts[b].y);ctx.strokeStyle='rgba(0,240,255,'+(0.14*(1-d/90))+')';ctx.lineWidth=0.5;ctx.stroke();}
+      }
+    })();
+  }
+
+  /* 3 — MAGNETIC BUTTON */
+  var mb=document.getElementById('magBtn');
+  if(mb){
+    mb.addEventListener('mousemove',function(e){
+      var r=mb.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+      mb.style.transform='translate('+(e.clientX-cx)*0.3+'px,'+(e.clientY-cy)*0.3+'px)';
+    });
+    mb.addEventListener('mouseleave',function(){
+      mb.style.transition='transform 0.4s cubic-bezier(0.34,1.56,0.64,1)';
+      mb.style.transform='translate(0,0)';
+      setTimeout(function(){mb.style.transition='';},400);
+    });
+  }
+
+  /* 4 — TYPEWRITER */
+  var twEl=document.getElementById('twOut');
+  if(twEl){
+    var words=['Websites','SEO Systems','Brand Identity','Landing Pages','Growth Engines','Local Authority'];
+    var wi=0,ci=0,del=false;
+    function tick(){
+      var w=words[wi];
+      if(!del){twEl.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(tick,1800);return;}setTimeout(tick,85+Math.random()*45);}
+      else{twEl.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(tick,400);return;}setTimeout(tick,45);}
+    }
+    setTimeout(tick,800);
+  }
+
+  /* 6 — NEON COUNTER */
+  var ctrEl=document.getElementById('ctrVal'),ctrCard=document.getElementById('fxCounter');
+  if(ctrEl&&ctrCard){
+    var ctrDone=false;
+    new IntersectionObserver(function(ents){
+      if(ents[0].isIntersecting&&!ctrDone){
+        ctrDone=true;
+        var s=null;
+        (function step(ts){
+          if(!s)s=ts;
+          var p=Math.min((ts-s)/2000,1),e=1-Math.pow(1-p,3);
+          ctrEl.textContent=Math.round(e*98);
+          if(p<1)requestAnimationFrame(step);
+        })(performance.now());
+      }
+    },{threshold:0.5}).observe(ctrCard);
+  }
+
+  /* 8 — AURORA RIPPLE */
+  var ac=document.getElementById('auroraCanvas'),aCard=document.getElementById('fxAurora'),aHint=document.getElementById('auroraHint');
+  if(ac&&aCard){
+    var actx=ac.getContext('2d'),ripples=[],AW,AH;
+    function resizeA(){AW=ac.width=aCard.offsetWidth;AH=ac.height=aCard.offsetHeight;}
+    resizeA();new ResizeObserver(resizeA).observe(aCard);
+    aCard.addEventListener('click',function(e){
+      var r=aCard.getBoundingClientRect();
+      ripples.push({x:e.clientX-r.left,y:e.clientY-r.top,r:0,life:1,c:Math.random()>0.5?'0,240,255':'155,93,229'});
+      if(aHint)aHint.style.opacity='0';
+    });
+    (function aloop(){
+      requestAnimationFrame(aloop);
+      actx.clearRect(0,0,AW,AH);
+      for(var i=ripples.length-1;i>=0;i--){
+        var rp=ripples[i];rp.r+=2.8;rp.life-=0.018;
+        if(rp.life<=0){ripples.splice(i,1);continue;}
+        actx.beginPath();actx.arc(rp.x,rp.y,rp.r,0,Math.PI*2);
+        actx.strokeStyle='rgba('+rp.c+','+rp.life*0.7+')';actx.lineWidth=2;actx.stroke();
+        actx.beginPath();actx.arc(rp.x,rp.y,rp.r*0.55,0,Math.PI*2);
+        actx.strokeStyle='rgba('+rp.c+','+rp.life*0.25+')';actx.lineWidth=1;actx.stroke();
+      }
+    })();
+  }
+
+  /* 9 — GRID REVEAL */
+  var grIn=document.getElementById('grInner'),grTxt=document.getElementById('grText');
+  if(grIn){
+    var gcols=8,grows=5,gcells=[];
+    for(var gi=0;gi<gcols*grows;gi++){var gc=document.createElement('div');gc.className='gr-cell';grIn.appendChild(gc);gcells.push(gc);}
+    var gwords=['LOADING','BUILDING','LAUNCHING','GROWING','KALIBRE'],gwi=0;
+    function gwave(){
+      gcells.forEach(function(c,idx){
+        var col=idx%gcols;
+        setTimeout(function(){c.classList.add('lit');},col*55+Math.random()*70);
+        setTimeout(function(){c.classList.remove('lit');},col*55+Math.random()*70+480);
+      });
+      gwi=(gwi+1)%gwords.length;
+      setTimeout(function(){if(grTxt)grTxt.textContent=gwords[gwi];},180);
+    }
+    gwave();setInterval(gwave,2200);
+  }
+
+})();
+</script>
+<!-- ===== END EFFECTS SHOWCASE ===== -->
 <!-- PRICING -->
 <section id="pricing">
   <div class="reveal">
