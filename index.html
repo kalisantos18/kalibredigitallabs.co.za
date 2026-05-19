@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -36,10 +36,18 @@
   --glass:rgba(255,255,255,0.04);
   --glass-border:rgba(255,255,255,0.1);
 }
-html{scroll-behavior:smooth;}
-body{background:#050505;color:white;overflow-x:hidden;}
-canvas{position:fixed;top:0;left:0;z-index:-2;}
+html{
+  scroll-behavior:smooth;
+}
 
+html, body{
+  overflow-x:hidden;
+}
+
+body{
+  background:#050505;
+  color:white;
+}
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
@@ -308,6 +316,92 @@ footer{
   92%{transform:translate(-2px,1px);}
   94%{transform:translate(2px,-1px);}
   96%{transform:translate(-1px,2px);}
+}/* ========================= */
+/* MOBILE OPTIMIZATION */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  nav {
+    padding: 14px 5%;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  section {
+    padding: 90px 6%;
+  }
+
+  .hero-stats,
+  .grid,
+  .pricing-grid,
+  .contact-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-flip,
+  .price-card,
+  .contact-card-3d {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
+
+}/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+@media (max-width: 768px){
+
+  nav{
+    padding: 16px 6%;
+  }
+
+  .nav-links{
+    display: none; /* hides desktop nav links */
+  }
+
+  #hero{
+    padding: 140px 6% 80px;
+    text-align: center;
+  }
+
+  h1{
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .subtitle{
+    font-size: 0.9rem;
+  }
+
+  .hero-btns{
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .hero-stats{
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  section{
+    padding: 90px 6%;
+  }
+
+  .contact-wrapper{
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .faq-grid{
+    grid-template-columns: 1fr !important;
+  }
+
 }
 </style>
 </head>
@@ -1039,13 +1133,6 @@ footer{
     </div>
   </div>
 </section>
-
-<footer>
-  © 2025 Kalibre Digital Labs. All rights reserved. &nbsp;·&nbsp; Built with precision. &nbsp;·&nbsp;
-  <a href="#" onclick="kdOpenPrivacy(event)" style="color:rgba(255,255,255,0.5);text-decoration:underline;">Privacy Policy</a>
-  &nbsp;·&nbsp;
-  <a href="#" onclick="kdOpenCookieSettings(event)" style="color:rgba(255,255,255,0.5);text-decoration:underline;">Cookie Settings</a>
-</footer>
 
 <!-- =====================================================================
      POPIA-COMPLIANT COOKIE CONSENT SYSTEM
@@ -1862,5 +1949,13 @@ reveals.forEach(r=>obs.observe(r));
   }
 ]
 </script>
+
+<footer>
+  © 2025 Kalibre Digital Labs. All rights reserved. &nbsp;·&nbsp; Built with precision. &nbsp;·&nbsp;
+  <a href="#" onclick="kdOpenPrivacy(event)" style="color:rgba(255,255,255,0.5);text-decoration:underline;">Privacy Policy</a>
+  &nbsp;·&nbsp;
+  <a href="#" onclick="kdOpenCookieSettings(event)" style="color:rgba(255,255,255,0.5);text-decoration:underline;">Cookie Settings</a>
+</footer>
+
 </body>
 </html>
