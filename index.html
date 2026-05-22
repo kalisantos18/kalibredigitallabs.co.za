@@ -651,10 +651,20 @@ footer{position:relative;z-index:2;padding:48px 8% 32px;border-top:1px solid var
 /* Effects section — hide cursor dot when hovering fx cards */
 .fx-card:hover ~ * #cursorDot,
 body.fx-hover #cursorDot{opacity:0 !important;}
+/* Disable custom cursor on touch devices */
+@media(hover:none),(pointer:coarse){
+  #cursorDot,#cursorRing{display:none!important;}
+  *{cursor:auto!important;}
+}
 
 /* ── PRICING RESPONSIVE ── */
 @media(max-width:1300px){.pricing-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:640px){.pricing-grid{grid-template-columns:1fr;}}
+/* Prevent pricing grid horizontal overflow */
+.pricing-grid{overflow:hidden;}
+.price-card{max-width:100%;word-break:break-word;}
+/* Service flip card overflow fix */
+.service-flip{max-width:100%;}
 .reveal{opacity:0;transform:translateY(30px);transition:0.7s ease;}
 .reveal.visible{opacity:1;transform:none;}
 
@@ -670,23 +680,53 @@ body.fx-hover #cursorDot{opacity:0 !important;}
   nav{padding:14px 5%;}
   .nav-links{display:none;}
   .nav-hamburger{display:flex;}
-  section{padding:90px 6%;}
-  #hero{padding-top:100px;}
-  h1{font-size:2.2rem;}
-  h2{font-size:1.6rem;}
-  .hero-btns,.hero-stats{flex-direction:column;}
-  .hero-stats{gap:20px;}
-  .grid,.contact-wrapper{flex-direction:column;align-items:center;}
-  .service-flip,.contact-card-3d{width:100%;max-width:420px;}
+  section{padding:80px 5% 60px;}
+  #hero{padding-top:90px;}
+  h1{font-size:2rem;}
+  h2{font-size:1.5rem;}
+  .hero-btns{flex-direction:column;align-items:stretch;gap:12px;}
+  .hero-btns .btn-primary,.hero-btns .btn-outline{width:100%;text-align:center;}
+  .hero-stats{flex-direction:column;gap:16px;margin-top:40px;}
+  .grid{flex-direction:column;align-items:stretch;}
+  .service-flip{width:100%;max-width:100%;height:auto;min-height:320px;perspective:none;}
+  /* On touch: disable CSS 3D flip, use JS .flipped class instead */
+  .service-inner{transform:none!important;transform-style:flat;}
+  .service-front{position:relative;backface-visibility:visible;}
+  .service-back{transform:none;position:relative;display:none;backface-visibility:visible;}
+  .service-flip.flipped .service-back{display:block;}
+  .service-flip.flipped .service-front{display:none;}
+  .contact-wrapper{flex-direction:column;align-items:stretch;}
+  /* Disable janky 3D transform on contact card mobile */
+  .contact-card-3d{width:100%;max-width:100%;transform:none!important;transition:none!important;}
   .effects-grid{grid-template-columns:1fr;}
-  .faq-left-sticky{position:static;}
+  /* Canvas elements: fill card properly */
+  .fx-card canvas{width:100%!important;height:100%!important;position:absolute;inset:0;}
+  .fx-card{min-height:180px;}
+  /* FAQ sticky fix */
+  .faq-left-sticky{position:static!important;top:auto;}
   .team-grid{grid-template-columns:1fr;}
+  /* Team card overflow */
+  .team-card{overflow:hidden;max-width:100%;}
+  .skill-tags{flex-wrap:wrap;}
   .footer-inner{flex-direction:column;}
   .footer-details{text-align:left;}
+  /* Prevent any element causing horizontal scroll */
+  .effects-cta{flex-direction:column;padding:20px;}
+  .compare-wrapper{-webkit-overflow-scrolling:touch;}
+  .lead-form-section{padding:28px 20px;}
 }
 @media(max-width:560px){
+  section{padding:70px 4% 50px;}
   .effects-grid{grid-template-columns:1fr;}
   .reg-trust-block{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:14px;}
+  .stat-num{font-size:1.6rem;}
+  .team-card{padding:24px 20px;}
+  .faq-grid{gap:24px;}
+  #faq,#contact,#effects,#about{padding:70px 4% 50px;}
+  .contact-cta{gap:10px;}
+  .btn-primary,.btn-outline{font-size:0.88rem;padding:12px 24px;}
 }
 </style>
 </head>
@@ -1411,7 +1451,7 @@ document.getElementById('navHamburger').addEventListener('click',function(){
   document.addEventListener('mousemove',function(e){
     mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5);
     var card=document.getElementById('contactCard');
-    if(card)card.style.transform='rotateY('+(mx*12)+'deg) rotateX('+(-my*12)+'deg)';
+    if(card&&!window.matchMedia('(hover:none),(pointer:coarse)').matches)card.style.transform='rotateY('+(mx*12)+'deg) rotateX('+(-my*12)+'deg)';
   });
   (function animate(){requestAnimationFrame(animate);stars.rotation.y+=0.0003+mx*0.0001;stars.rotation.x+=my*0.0001;renderer.render(scene,camera);})();
   window.addEventListener('resize',function(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
@@ -1425,6 +1465,8 @@ document.getElementById('navHamburger').addEventListener('click',function(){
 
 /* ── CUSTOM CURSOR ── */
 (function(){
+  /* Skip entirely on touch/pointer:coarse devices */
+  if(window.matchMedia('(hover:none),(pointer:coarse)').matches)return;
   var canvas=document.createElement('canvas');
   canvas.style.cssText='position:fixed;top:0;left:0;pointer-events:none;z-index:99998;';
   canvas.width=innerWidth;canvas.height=innerHeight;
@@ -1593,9 +1635,16 @@ function setTerm(months,btn){
   }
 })();
 
+/* ── TOUCH FLIP FOR SERVICE CARDS ── */
+(function(){
+  if(!window.matchMedia('(hover:none),(pointer:coarse)').matches)return;
+  document.querySelectorAll('.service-flip').forEach(function(card){
+    card.addEventListener('click',function(){card.classList.toggle('flipped');});
+  });
+})();
+
 /* ── LEAD FORM ── */
 function submitLeadForm(){
-  var name=document.getElementById('lf-name').value.trim();
   var phone=document.getElementById('lf-phone').value.trim();
   var email=document.getElementById('lf-email').value.trim();
   var service=document.getElementById('lf-service').value;
