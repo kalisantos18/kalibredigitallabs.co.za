@@ -3,10 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Kalibre Digital Labs | Websites, SEO &amp; Branding in South Africa from R799/mo</title>
-<meta name="description" content="Kalibre Digital Labs builds high-performance websites, SEO strategies, and brand identities for South African businesses. Packages from R799/month.">
+<title>Kalibre Digital Labs | Websites, SEO, Logo Design &amp; Hosting – Johannesburg &amp; Cape Town</title>
+<meta name="description" content="Kalibre Digital Labs builds high-performance websites, SEO strategies, logo design, domain &amp; hosting, and brand identities for businesses in Johannesburg, Cape Town and across South Africa. Packages from R799/month.">
+<meta name="keywords" content="Kalibre Digital Labs, website design Johannesburg, website design Cape Town, web designer near me, SEO services South Africa, logo design South Africa, domain and hosting South Africa, branding agency South Africa, affordable website packages, small business website South Africa, Google Business Profile optimisation, website pricing South Africa">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.kalibredigitallabs.co.za/">
+
+<!-- Geo targeting -->
+<meta name="geo.region" content="ZA-GP">
+<meta name="geo.placename" content="Johannesburg, Cape Town, South Africa">
+<meta name="ICBM" content="-26.2041, 28.0473">
 
 <!-- Favicon / logo -->
 <link rel="icon" type="image/png" href="/logo.png">
@@ -16,8 +22,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalibre Digital Labs">
 <meta property="og:url" content="https://www.kalibredigitallabs.co.za/">
-<meta property="og:title" content="Kalibre Digital Labs | Websites, SEO &amp; Branding – South Africa">
-<meta property="og:description" content="High-performance websites, SEO, and branding for South African businesses. Packages from R799/month.">
+<meta property="og:title" content="Kalibre Digital Labs | Websites, SEO, Logo Design &amp; Hosting – Johannesburg &amp; Cape Town">
+<meta property="og:description" content="High-performance websites, SEO, logo design, domain &amp; hosting, and branding for businesses in Johannesburg, Cape Town and across South Africa. Packages from R799/month.">
 <meta property="og:image" content="https://www.kalibredigitallabs.co.za/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -28,8 +34,8 @@
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://www.kalibredigitallabs.co.za/">
-<meta name="twitter:title" content="Kalibre Digital Labs | Websites, SEO &amp; Branding – South Africa">
-<meta name="twitter:description" content="High-performance websites, SEO, and branding for South African businesses. Packages from R799/month.">
+<meta name="twitter:title" content="Kalibre Digital Labs | Websites, SEO, Logo Design &amp; Hosting – Johannesburg &amp; Cape Town">
+<meta name="twitter:description" content="High-performance websites, SEO, logo design, domain &amp; hosting, and branding for businesses in Johannesburg, Cape Town and across South Africa. Packages from R799/month.">
 <meta name="twitter:image" content="https://www.kalibredigitallabs.co.za/og-image.jpg">
 <meta name="twitter:image:alt" content="Kalibre Digital Labs — Websites, SEO &amp; Branding for South African businesses">
 
@@ -372,11 +378,6 @@ h2{font-size:clamp(1.8rem,3vw,3rem);font-weight:700;line-height:1.2;}
 .price-btn-purple:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--pg);}
 .popular-ribbon{position:absolute;top:16px;right:-5px;background:#22c55e;color:#000;font-size:0.68rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:4px 14px 4px 10px;border-radius:4px 0 0 4px;}
 .popular-ribbon::after{content:'';position:absolute;right:0;bottom:-5px;border-left:5px solid #15803d;border-bottom:5px solid transparent;}
-.term-selector{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
-.term-btn{padding:5px 12px;border-radius:50px;font-size:0.72rem;font-weight:700;cursor:pointer;border:1px solid rgba(155,93,229,0.3);background:transparent;color:rgba(155,93,229,0.7);transition:0.2s;}
-.term-btn.active,.term-btn:hover{background:rgba(155,93,229,0.15);border-color:var(--purple);color:var(--purple);}
-.custom-price-display{transition:opacity 0.3s;}
-.saving-badge{display:inline-block;padding:3px 10px;border-radius:50px;font-size:0.68rem;font-weight:700;background:rgba(155,93,229,0.15);border:1px solid rgba(155,93,229,0.3);color:var(--purple);margin-left:8px;vertical-align:middle;}
 
 /* ── PLAN CALCULATOR ── */
 .calc-outer{background:rgba(255,255,255,0.03);border:1px solid rgba(0,240,255,0.15);border-radius:28px;padding:40px 44px;position:relative;overflow:hidden;margin-top:50px;}
@@ -737,6 +738,25 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 .reveal{opacity:0;transform:translateY(30px);transition:0.7s ease;}
 .reveal.visible{opacity:1;transform:none;}
 
+/* ── WORD-BY-WORD SCROLL REVEAL ── */
+.wr-word{display:inline-block;opacity:0;transform:translateY(0.45em);transition:opacity 0.55s cubic-bezier(0.2,0.8,0.2,1),transform 0.55s cubic-bezier(0.2,0.8,0.2,1);transition-delay:calc(var(--wd,0) * 1ms);}
+.word-reveal.wr-visible .wr-word{opacity:1;transform:translateY(0);}
+
+/* ── STAGGERED CARD REVEAL ── */
+.grid.reveal .service-flip,.pricing-grid.reveal .price-card,.effects-grid.reveal .fx-card,.team-grid.reveal .team-card{opacity:0;transform:translateY(26px);transition:opacity 0.6s cubic-bezier(0.2,0.8,0.2,1),transform 0.6s cubic-bezier(0.2,0.8,0.2,1);}
+.grid.reveal.visible .service-flip,.pricing-grid.reveal.visible .price-card,.effects-grid.reveal.visible .fx-card,.team-grid.reveal.visible .team-card{opacity:1;transform:none;}
+.grid.reveal .service-flip:nth-child(2),.effects-grid.reveal .fx-card:nth-child(2),.pricing-grid.reveal .price-card:nth-child(2),.team-grid.reveal .team-card:nth-child(2){transition-delay:.08s;}
+.grid.reveal .service-flip:nth-child(3),.effects-grid.reveal .fx-card:nth-child(3),.pricing-grid.reveal .price-card:nth-child(3),.team-grid.reveal .team-card:nth-child(3){transition-delay:.16s;}
+.grid.reveal .service-flip:nth-child(4),.effects-grid.reveal .fx-card:nth-child(4),.pricing-grid.reveal .price-card:nth-child(4),.team-grid.reveal .team-card:nth-child(4){transition-delay:.24s;}
+.grid.reveal .service-flip:nth-child(5),.effects-grid.reveal .fx-card:nth-child(5){transition-delay:.32s;}
+.grid.reveal .service-flip:nth-child(6),.effects-grid.reveal .fx-card:nth-child(6){transition-delay:.4s;}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.05s!important;scroll-behavior:auto!important;}
+  .wr-word{opacity:1!important;transform:none!important;}
+}
+
 /* ── MOBILE ── */
 @media(max-width:1000px){.team-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:900px){
@@ -856,7 +876,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="services">
   <div class="reveal">
     <div class="section-label">What We Do</div>
-    <h2>Our Services</h2>
+    <h2 class="word-reveal">Our Services</h2>
     <p class="subtitle">Hover a card to see what's included. Every service is built to generate real results for your business.</p>
   </div>
   <div class="grid reveal">
@@ -894,7 +914,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="seo" style="min-height:auto;padding-bottom:80px;">
   <div class="reveal">
     <div class="section-label">Deep Dive</div>
-    <h2>How SEO Works <span style="color:var(--cyan)">For You</span></h2>
+    <h2 class="word-reveal">How SEO Works <span style="color:var(--cyan)">For You</span></h2>
     <p class="subtitle">SEO isn't a one-time thing — it's a compounding system that builds authority and visibility over time.</p>
   </div>
   <div class="info-section reveal">
@@ -924,7 +944,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="branding" style="min-height:auto;padding-bottom:80px;">
   <div class="reveal">
     <div class="section-label">Brand Identity</div>
-    <h2>Why Branding <span style="color:var(--purple)">Matters</span></h2>
+    <h2 class="word-reveal">Why Branding <span style="color:var(--purple)">Matters</span></h2>
     <p class="subtitle">Your brand is the first impression. In a crowded market, a strong identity is your unfair advantage.</p>
   </div>
   <div class="info-section reveal">
@@ -947,7 +967,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="effects" style="min-height:auto;padding-bottom:80px;">
   <div class="reveal">
     <div class="section-label">What We Can Build</div>
-    <h2>Effects &amp; <span style="color:var(--cyan)">Animations</span></h2>
+    <h2 class="word-reveal">Effects &amp; <span style="color:var(--cyan)">Animations</span></h2>
     <p class="subtitle">Live previews of effects we embed in your website — all hand-coded to match your brand, no template plugins.</p>
   </div>
   <div class="effects-grid reveal">
@@ -981,7 +1001,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="about" style="min-height:auto;padding-bottom:80px;">
   <div class="reveal">
     <div class="section-label">The Team</div>
-    <h2>The Architects of<span style="color:var(--cyan)"> Kalibre Digital Labs</span></h2>
+    <h2 class="word-reveal">The Architects of<span style="color:var(--cyan)"> Kalibre Digital Labs</span></h2>
   </div>
   <div class="team-intro reveal">
     <p>Kalibre Digital Labs was founded in Johannesburg by three young South Africans who combined their skills in development, design, and sales to build something that genuinely helps local businesses compete online. No outsourcing. No templates. Real work from a team that stands behind every project.</p>
@@ -1067,7 +1087,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="pricing">
   <div class="reveal">
     <div class="section-label">Packages</div>
-    <h2>Simple, Transparent <span style="color:var(--cyan)">Pricing</span></h2>
+    <h2 class="word-reveal">Simple, Transparent <span style="color:var(--cyan)">Pricing</span></h2>
     <p class="subtitle">Three packages designed for where your business is now — and where it's going. All prices in South African Rand.</p>
   </div>
   <div class="pricing-grid reveal">
@@ -1134,55 +1154,22 @@ body.fx-hover #cursorDot{opacity:0 !important;}
       <button class="price-btn price-btn-gold" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Go Premium</button>
     </div>
 
-    <!-- CUSTOM — PURPLE with per-plan term pricing -->
+    <!-- CUSTOM — PURPLE, paragraph explainer (detailed term pricing lives in the calculator below) -->
     <div class="price-card custom-card">
       <div class="card-glow" style="background:var(--purple);"></div>
       <span class="price-badge badge-custom">Custom</span>
-      <div class="price-name" style="color:var(--purple);">Discounted Plans</div>
-      <div class="price-tagline" style="margin-bottom:12px;">Lock in a term and save — choose 3, 6, or 12 months.</div>
-      <div class="term-selector">
-        <button class="term-btn active" onclick="setTerm(3,this)">3 Months</button>
-        <button class="term-btn" onclick="setTerm(6,this)">6 Months</button>
-        <button class="term-btn" onclick="setTerm(12,this)">12 Months</button>
-      </div>
+      <div class="price-name" style="color:var(--purple);">Flexible Custom Plans</div>
+      <p style="font-size:0.86rem;line-height:1.85;opacity:0.65;margin-bottom:0;">
+        No two businesses need the exact same thing, so our custom plans are built around your goals, scope and budget rather than a fixed box. Mix and match website, SEO, branding and hosting services, then lock in a 3, 6 or 12-month term to unlock deeper savings — use the plan calculator just below to see live numbers, or get in touch for a tailored quote.
+      </p>
       <div class="price-divider"></div>
-      <!-- Entry row -->
-      <div style="margin-bottom:14px;">
-        <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);font-weight:700;margin-bottom:4px;">Entry</div>
-        <div style="display:flex;align-items:baseline;gap:3px;white-space:nowrap;">
-          <span style="font-size:1rem;color:var(--cyan);opacity:0.7;">R</span>
-          <span id="cp-price-entry" style="font-size:1.8rem;font-weight:900;color:var(--cyan);line-height:1;letter-spacing:-1px;">799</span>
-          <span style="font-size:0.75rem;opacity:0.5;">/month</span>
-        </div>
-        <div id="cp-label-entry" style="font-size:0.72rem;color:rgba(0,240,255,0.5);margin-top:2px;">Entry — no discount</div>
-      </div>
-      <!-- Growth row -->
-      <div style="margin-bottom:14px;">
-        <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:#22c55e;font-weight:700;margin-bottom:4px;">Growth</div>
-        <div style="display:flex;align-items:baseline;gap:3px;white-space:nowrap;">
-          <span style="font-size:1rem;color:#22c55e;opacity:0.7;">R</span>
-          <span id="cp-price-growth" style="font-size:1.8rem;font-weight:900;color:#22c55e;line-height:1;letter-spacing:-1px;">1 329</span>
-          <span style="font-size:0.75rem;opacity:0.5;">/month</span>
-        </div>
-        <div id="cp-label-growth" style="font-size:0.72rem;color:rgba(34,197,94,0.5);margin-top:2px;">Save ~5% vs monthly</div>
-      </div>
-      <!-- Premium row -->
-      <div style="margin-bottom:20px;">
-        <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px;">Authority</div>
-        <div style="display:flex;align-items:baseline;gap:3px;white-space:nowrap;">
-          <span style="font-size:1rem;color:var(--gold);opacity:0.7;">R</span>
-          <span id="cp-price-premium" style="font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1;letter-spacing:-1px;">2 089</span>
-          <span style="font-size:0.75rem;opacity:0.5;">/month</span>
-        </div>
-        <div id="cp-label-premium" style="font-size:0.72rem;color:rgba(247,201,72,0.5);margin-top:2px;">Save ~5% vs monthly</div>
-      </div>
       <ul class="price-features" style="margin-bottom:20px;">
-        <li><span class="check check-purple">✓</span>Locked-in monthly rate</li>
-        <li><span class="check check-purple">✓</span>All services fully included</li>
-        <li><span class="check check-purple">✓</span>Free discovery consultation</li>
+        <li><span class="check check-purple">✓</span>Built around your exact goals</li>
+        <li><span class="check check-purple">✓</span>Mix &amp; match any services</li>
+        <li><span class="check check-purple">✓</span>Save more the longer you commit</li>
         <li><span class="check check-purple">✓</span>Quoted within 24 hours</li>
       </ul>
-      <button class="price-btn price-btn-purple" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Custom Quote</button>
+      <button class="price-btn price-btn-purple" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})">See Plan Calculator</button>
     </div>
 
   </div>
@@ -1212,7 +1199,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="calculator" style="min-height:auto;padding-bottom:80px;">
   <div class="reveal">
     <div class="section-label">Lock In Your Rate</div>
-    <h2>Plan <span style="color:var(--cyan)">Calculator</span></h2>
+    <h2 class="word-reveal">Plan <span style="color:var(--cyan)">Calculator</span></h2>
     <p class="subtitle">Choose your plan, pick your commitment term, and see exactly what you'll pay — plus how much you save.</p>
   </div>
   <div class="calc-outer reveal">
@@ -1292,7 +1279,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="faq" style="min-height:auto;padding-bottom:80px;">
   <div class="reveal">
     <div class="section-label">Got Questions?</div>
-    <h2>Frequently Asked <span style="color:var(--cyan)">Questions</span></h2>
+    <h2 class="word-reveal">Frequently Asked <span style="color:var(--cyan)">Questions</span></h2>
     <p class="subtitle">Everything you need to know before getting started. Can't find your answer? <a href="#contact" style="color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,240,255,0.3);">Just ask us.</a></p>
   </div>
   <div class="faq-grid reveal">
@@ -1330,7 +1317,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
 <section id="contact" style="min-height:auto;padding-bottom:80px;">
   <div class="reveal">
     <div class="section-label">Let's Talk</div>
-    <h2>Ready to <span style="color:var(--cyan)">Grow?</span></h2>
+    <h2 class="word-reveal">Ready to <span style="color:var(--cyan)">Grow?</span></h2>
   </div>
   <div class="contact-wrapper reveal">
     <div class="contact-card-3d" id="contactCard">
@@ -1548,6 +1535,7 @@ body.fx-hover #cursorDot{opacity:0 !important;}
     "logo": "https://www.kalibredigitallabs.co.za/logo.png",
     "image": "https://www.kalibredigitallabs.co.za/og-image.jpg",
     "priceRange": "R799 – R2199/month",
+    "keywords": "website design Johannesburg, website design Cape Town, SEO services South Africa, logo design, domain and hosting, branding agency South Africa",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "18 Cuming Road",
@@ -1555,6 +1543,11 @@ body.fx-hover #cursorDot{opacity:0 !important;}
       "addressRegion": "Gauteng",
       "addressCountry": "ZA"
     },
+    "areaServed": [
+      {"@type": "City", "name": "Johannesburg"},
+      {"@type": "City", "name": "Cape Town"},
+      {"@type": "Country", "name": "South Africa"}
+    ],
     "sameAs": [
       "https://wa.me/27625411075"
     ],
@@ -1630,6 +1623,7 @@ document.getElementById('navHamburger').addEventListener('click',function(){
   },{passive:true});
   function draw(){
     requestAnimationFrame(draw);
+    if(document.hidden)return;
     rot+=0.0006+mx*0.0002;
     ctx.clearRect(0,0,W,H);
     ctx.fillStyle='#00f0ff';
@@ -1651,6 +1645,48 @@ document.getElementById('navHamburger').addEventListener('click',function(){
 (function(){
   var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
+})();
+
+/* ── WORD-BY-WORD SCROLL REVEAL (headings) ── */
+(function(){
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var heads=document.querySelectorAll('.word-reveal');
+  if(reduceMotion||!heads.length)return;
+  heads.forEach(function(el){
+    var delay=0;
+    (function walk(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(child){
+        if(child.nodeType===3){
+          var parts=child.textContent.split(/(\s+)/).filter(function(s){return s.length;});
+          var frag=document.createDocumentFragment();
+          parts.forEach(function(part){
+            if(/^\s+$/.test(part)){
+              frag.appendChild(document.createTextNode(part));
+            }else{
+              var span=document.createElement('span');
+              span.className='wr-word';
+              span.style.setProperty('--wd',delay);
+              span.textContent=part;
+              delay+=45;
+              frag.appendChild(span);
+            }
+          });
+          node.replaceChild(frag,child);
+        }else if(child.nodeType===1){
+          walk(child);
+        }
+      });
+    })(el);
+  });
+  var wrObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('wr-visible');
+        wrObs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.4});
+  heads.forEach(function(el){wrObs.observe(el);});
 })();
 
 /* ── CUSTOM CURSOR ── */
@@ -1692,37 +1728,6 @@ document.getElementById('navHamburger').addEventListener('click',function(){
     }
   })();
 })();
-
-/* ── CUSTOM PLAN TERM SELECTOR ── */
-var termData={
-  3:{
-    entry:{price:'799',label:'Entry — no discount'},
-    growth:{price:'1 329',label:'Save ~5% vs monthly'},
-    premium:{price:'2 089',label:'Save ~5% vs monthly'}
-  },
-  6:{
-    entry:{price:'759',label:'Save ~5% vs monthly'},
-    growth:{price:'1 259',label:'Save ~10% vs monthly'},
-    premium:{price:'1 979',label:'Save ~10% vs monthly'}
-  },
-  12:{
-    entry:{price:'719',label:'Save ~10% vs monthly'},
-    growth:{price:'1 189',label:'Save ~15% vs monthly'},
-    premium:{price:'1 869',label:'Save ~15% vs monthly'}
-  }
-};
-function setTerm(months,btn){
-  document.querySelectorAll('.term-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  var d=termData[months];
-  var plans=['entry','growth','premium'];
-  plans.forEach(function(p){
-    var priceEl=document.getElementById('cp-price-'+p);
-    var labelEl=document.getElementById('cp-label-'+p);
-    if(priceEl)priceEl.textContent=d[p].price;
-    if(labelEl)labelEl.textContent=d[p].label;
-  });
-}
 
 /* ── CURSOR HIDE ON EFFECTS SECTION ── */
 (function(){
@@ -1778,8 +1783,12 @@ function setTerm(months,btn){
     for(var i=0;i<55;i++)pts.push({x:Math.random()*800,y:Math.random()*300,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:1+Math.random()*1.5});
     fc.addEventListener('mousemove',function(e){var r=fc.getBoundingClientRect();pmx=e.clientX-r.left;pmy=e.clientY-r.top;});
     fc.addEventListener('mouseleave',function(){pmx=-999;pmy=-999;});
+    var pVisible=true;
+    new IntersectionObserver(function(ents){pVisible=ents[0].isIntersecting;},{threshold:0}).observe(fc);
     (function ploop(){
-      requestAnimationFrame(ploop);ctx.clearRect(0,0,PW,PH);
+      requestAnimationFrame(ploop);
+      if(document.hidden||!pVisible)return;
+      ctx.clearRect(0,0,PW,PH);
       pts.forEach(function(p){
         p.x+=p.vx;p.y+=p.vy;
         if(p.x<0)p.x=PW;if(p.x>PW)p.x=0;if(p.y<0)p.y=PH;if(p.y>PH)p.y=0;
@@ -1817,7 +1826,9 @@ function setTerm(months,btn){
     function resizeA(){AW=ac.width=aCard.offsetWidth;AH=ac.height=aCard.offsetHeight;}
     resizeA();new ResizeObserver(resizeA).observe(aCard);
     aCard.addEventListener('click',function(e){var r=aCard.getBoundingClientRect();ripples.push({x:e.clientX-r.left,y:e.clientY-r.top,r:0,life:1,c:Math.random()>.5?'0,240,255':'155,93,229'});if(aHint)aHint.style.opacity='0';});
-    (function aloop(){requestAnimationFrame(aloop);actx.clearRect(0,0,AW,AH);for(var i=ripples.length-1;i>=0;i--){var rp=ripples[i];rp.r+=2.8;rp.life-=.018;if(rp.life<=0){ripples.splice(i,1);continue;}actx.beginPath();actx.arc(rp.x,rp.y,rp.r,0,Math.PI*2);actx.strokeStyle='rgba('+rp.c+','+rp.life*.7+')';actx.lineWidth=2;actx.stroke();}})();
+    var aVisible=true;
+    new IntersectionObserver(function(ents){aVisible=ents[0].isIntersecting;},{threshold:0}).observe(aCard);
+    (function aloop(){requestAnimationFrame(aloop);if(document.hidden||!aVisible)return;actx.clearRect(0,0,AW,AH);for(var i=ripples.length-1;i>=0;i--){var rp=ripples[i];rp.r+=2.8;rp.life-=.018;if(rp.life<=0){ripples.splice(i,1);continue;}actx.beginPath();actx.arc(rp.x,rp.y,rp.r,0,Math.PI*2);actx.strokeStyle='rgba('+rp.c+','+rp.life*.7+')';actx.lineWidth=2;actx.stroke();}})();
   }
   var grIn=document.getElementById('grInner'),grTxt=document.getElementById('grText');
   if(grIn){
