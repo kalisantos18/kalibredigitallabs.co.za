@@ -817,9 +817,266 @@ body.fx-hover #cursorDot{opacity:0 !important;}
   .contact-cta{gap:10px;}
   .btn-primary,.btn-outline{font-size:0.88rem;padding:12px 24px;}
 }
+
+/* ══════════════════════════════════════════════
+   ENTRANCE ANIMATION OVERLAY
+══════════════════════════════════════════════ */
+#kd-intro{
+  position:fixed;inset:0;z-index:99999;
+  background:#050505;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  pointer-events:all;overflow:hidden;
+}
+#kd-intro.done{
+  pointer-events:none;
+  animation:introExit 0.7s cubic-bezier(0.7,0,0.3,1) 0.1s forwards;
+}
+@keyframes introExit{
+  0%{opacity:1;clip-path:inset(0 0 0 0);}
+  100%{opacity:0;clip-path:inset(0 0 100% 0);}
+}
+
+/* Intro canvas for particles */
+#kd-intro-canvas{
+  position:absolute;inset:0;pointer-events:none;
+}
+
+/* Logo container */
+.kd-intro-logo{
+  position:relative;z-index:2;text-align:center;
+}
+.kd-intro-wordmark{
+  font-size:clamp(2.2rem,6vw,5rem);
+  font-weight:900;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:#fff;
+  overflow:hidden;
+  line-height:1;
+}
+.kd-intro-wordmark .word-k{
+  display:inline-block;
+  clip-path:inset(0 100% 0 0);
+  animation:wipeIn 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+}
+.kd-intro-wordmark .word-d{
+  display:inline-block;
+  clip-path:inset(0 100% 0 0);
+  animation:wipeIn 0.7s cubic-bezier(0.16,1,0.3,1) 0.55s forwards;
+  color:var(--cyan);
+}
+@keyframes wipeIn{
+  to{clip-path:inset(0 0% 0 0);}
+}
+
+.kd-intro-tagline{
+  font-size:clamp(0.6rem,1.5vw,0.85rem);
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.35);
+  margin-top:14px;
+  opacity:0;
+  animation:fadeUp 0.6s ease 1.0s forwards;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* Neon line under logo */
+.kd-intro-line{
+  width:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  margin:16px auto 0;
+  animation:lineExpand 0.8s ease 0.9s forwards;
+  box-shadow:0 0 12px var(--cyan);
+}
+@keyframes lineExpand{
+  to{width:300px;}
+}
+
+/* Loading bar */
+.kd-intro-bar-wrap{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  width:200px;
+}
+.kd-intro-bar-track{
+  height:1px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;
+}
+.kd-intro-bar-fill{
+  height:100%;width:0;
+  background:var(--cyan);
+  box-shadow:0 0 8px var(--cyan);
+  animation:barFill 1.6s cubic-bezier(0.4,0,0.2,1) 0.2s forwards;
+}
+@keyframes barFill{
+  to{width:100%;}
+}
+.kd-intro-bar-label{
+  font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);text-align:center;margin-top:10px;
+}
+
+/* Scanline sweep */
+.kd-intro-scan{
+  position:absolute;top:-4px;left:0;right:0;height:3px;
+  background:linear-gradient(180deg,transparent,var(--cyan),transparent);
+  opacity:0.5;
+  animation:scanSweep 1.4s ease 0.2s forwards;
+}
+@keyframes scanSweep{
+  from{top:-4px;opacity:0.6;}
+  to{top:100%;opacity:0;}
+}
+
+/* Corner brackets */
+.kd-intro-corner{
+  position:absolute;width:36px;height:36px;
+  opacity:0;
+  animation:cornerIn 0.5s ease 0.7s forwards;
+}
+@keyframes cornerIn{to{opacity:0.4;}}
+.kd-intro-corner.tl{top:32px;left:32px;border-top:1.5px solid var(--cyan);border-left:1.5px solid var(--cyan);}
+.kd-intro-corner.tr{top:32px;right:32px;border-top:1.5px solid var(--cyan);border-right:1.5px solid var(--cyan);}
+.kd-intro-corner.bl{bottom:32px;left:32px;border-bottom:1.5px solid var(--cyan);border-left:1.5px solid var(--cyan);}
+.kd-intro-corner.br{bottom:32px;right:32px;border-bottom:1.5px solid var(--cyan);border-right:1.5px solid var(--cyan);}
+
+/* Burst ring */
+.kd-intro-ring{
+  position:absolute;left:50%;top:50%;
+  width:0;height:0;border-radius:50%;
+  border:1px solid var(--cyan);
+  transform:translate(-50%,-50%);
+  opacity:0;
+  animation:ringBurst 0.9s cubic-bezier(0,0.6,0.4,1) 1.1s forwards;
+}
+.kd-intro-ring:nth-child(2){animation-delay:1.25s;border-color:rgba(155,93,229,0.6);}
+.kd-intro-ring:nth-child(3){animation-delay:1.4s;border-color:rgba(0,240,255,0.3);}
+@keyframes ringBurst{
+  0%{width:0;height:0;opacity:0.8;}
+  100%{width:600px;height:600px;opacity:0;}
+}
+
+/* ══════════════════════════════════════════════
+   DESKTOP THEME SWITCHER — CYAN ↔ CRIMSON
+══════════════════════════════════════════════ */
+
+/* Crimson theme overrides — applied via .theme-crimson on <html> */
+html.theme-crimson{
+  --cyan:#ff1a3c;
+  --cg:rgba(255,26,60,0.22);
+  --cg2:rgba(255,26,60,0.08);
+}
+
+/* Theme transition flash overlay */
+#theme-flash{
+  position:fixed;inset:0;z-index:99990;
+  pointer-events:none;
+  opacity:0;
+}
+#theme-flash.flash{
+  animation:themeFlash 0.55s ease forwards;
+}
+@keyframes themeFlash{
+  0%{opacity:0;}
+  15%{opacity:0.18;}
+  50%{opacity:0.08;}
+  100%{opacity:0;}
+}
+
+/* Theme indicator pill — desktop only */
+#theme-pill{
+  position:fixed;top:22px;right:50%;transform:translateX(50%);
+  z-index:99989;
+  font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;
+  padding:5px 14px;border-radius:50px;
+  opacity:0;
+  transition:opacity 0.4s,background 1s,color 1s,border-color 1s;
+  pointer-events:none;
+  border:1px solid var(--cyan);
+  color:var(--cyan);
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(10px);
+}
+#theme-pill.visible{opacity:1;}
+
+/* Canvas background syncs via JS fillStyle */
+/* Cursor dot syncs via JS */
+
+/* Smooth transition on all --cyan consumers */
+html{transition:color 0s;}
+nav,
+.logo span,
+.nav-links a:hover,
+.section-label,
+.hero-badge .dot,
+.stat,.stat-num,
+.glitch::after,
+.service-back,
+.service-icon,
+.tag,
+.info-block::before,
+.info-block::after,
+.btn-primary,
+.price-card.entry-card,
+.calc-outer,
+.calc-result-panel,
+.calc-result-rlabel,
+.calc-r-currency,
+.calc-r-num,
+.kd-intro-line,
+.kd-intro-bar-fill,
+.kd-intro-ring,
+.kd-intro-corner.tl,
+.kd-intro-corner.tr,
+.kd-intro-corner.bl,
+.kd-intro-corner.br{
+  transition:color 1s ease, background 1s ease, border-color 1s ease, box-shadow 1s ease, background-color 1s ease;
+}
+
+/* Only apply theme switching on desktop */
+@media(max-width:768px){
+  #theme-pill{display:none;}
+}
 </style>
 </head>
 <body>
+
+<!-- THEME FLASH OVERLAY -->
+<div id="theme-flash"></div>
+
+<!-- THEME PILL INDICATOR (desktop) -->
+<div id="theme-pill">⬤ CYAN MODE</div>
+
+<!-- ENTRANCE ANIMATION OVERLAY -->
+<div id="kd-intro" role="presentation" aria-hidden="true">
+  <canvas id="kd-intro-canvas"></canvas>
+  <div class="kd-intro-scan"></div>
+  <div class="kd-intro-corner tl"></div>
+  <div class="kd-intro-corner tr"></div>
+  <div class="kd-intro-corner bl"></div>
+  <div class="kd-intro-corner br"></div>
+  <div class="kd-intro-ring"></div>
+  <div class="kd-intro-ring"></div>
+  <div class="kd-intro-ring"></div>
+  <div class="kd-intro-logo">
+    <div class="kd-intro-wordmark">
+      <span class="word-k">KALIBRE&nbsp;</span><span class="word-d">DIGITAL</span>
+    </div>
+<div class="kd-intro-wordmark" style="font-size:clamp(0.9rem,2.2vw,1.8rem);letter-spacing:14px;margin-top:6px;justify-content:center;display:flex;">
+  <span class="word-labs" style="display:inline-block;clip-path:inset(0 100% 0 0);animation:wipeIn 0.6s cubic-bezier(0.16,1,0.3,1) 0.85s forwards;color:rgba(255,255,255,0.45);font-weight:300;">LABS</span>
+</div>
+
+    <div class="kd-intro-tagline">Labs &nbsp;·&nbsp; Websites &nbsp;·&nbsp; SEO &nbsp;·&nbsp; Branding</div>
+    <div class="kd-intro-line"></div>
+  </div>
+  <div class="kd-intro-bar-wrap">
+    <div class="kd-intro-bar-track">
+      <div class="kd-intro-bar-fill"></div>
+    </div>
+    <div class="kd-intro-bar-label">Initialising experience</div>
+  </div>
+</div>
 
 <canvas id="bg"></canvas>
 
@@ -1626,7 +1883,7 @@ document.getElementById('navHamburger').addEventListener('click',function(){
     if(document.hidden)return;
     rot+=0.0006+mx*0.0002;
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle='#00f0ff';
+    ctx.fillStyle=window._kdThemeColor||'#00f0ff';
     var ox=mx*18,oy=my*18;
     for(var i=0;i<stars.length;i++){
       var s=stars[i],ang=s.a+rot,x=cx+ox+Math.cos(ang)*s.r,y=cy+oy+Math.sin(ang)*s.r*0.6;
@@ -1723,8 +1980,10 @@ document.getElementById('navHamburger').addEventListener('click',function(){
     for(var i=particles.length-1;i>=0;i--){
       var p=particles[i];p.life-=p.decay;p.x+=p.vx;p.y+=p.vy;p.vx*=.96;p.vy*=.96;p.r*=.982;
       if(p.life<=0||p.r<.25){particles.splice(i,1);continue;}
-      var t=1-p.life,r=p.front?Math.round(t*40):Math.round(80+t*175),g=p.front?Math.round(200+t*55):Math.round(t*20),b=p.front?255:Math.round(255-t*80);
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba('+r+','+g+','+b+','+p.life*.9+')';ctx.fill();
+      var rgb=window._kdCursorColorRgb||'0,240,255';
+      var t=1-p.life,r2=p.front?Math.round(t*40):Math.round(parseInt(rgb.split(',')[0])*0.4+t*175),g2=p.front?Math.round(200+t*55):Math.round(t*20),b2=p.front?255:Math.round(255-t*80);
+      if(rgb==='255,26,60'){r2=p.front?255:Math.round(200+t*55);g2=p.front?Math.round(26+t*30):Math.round(t*10);b2=p.front?Math.round(60+t*20):Math.round(60-t*40);}
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba('+r2+','+g2+','+b2+','+p.life*.9+')';ctx.fill();
     }
   })();
 })();
@@ -1794,7 +2053,7 @@ document.getElementById('navHamburger').addEventListener('click',function(){
         if(p.x<0)p.x=PW;if(p.x>PW)p.x=0;if(p.y<0)p.y=PH;if(p.y>PH)p.y=0;
         var dx=p.x-pmx,dy=p.y-pmy,dist=Math.sqrt(dx*dx+dy*dy);
         if(dist<80){p.x+=dx/dist*.8;p.y+=dy/dist*.8;}
-        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,240,255,0.75)';ctx.fill();
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=window._kdParticleColor||'rgba(0,240,255,0.75)';ctx.fill();
       });
       for(var a=0;a<pts.length;a++)for(var b=a+1;b<pts.length;b++){
         var dx=pts[a].x-pts[b].x,dy=pts[a].y-pts[b].y,d=Math.sqrt(dx*dx+dy*dy);
@@ -1838,7 +2097,7 @@ document.getElementById('navHamburger').addEventListener('click',function(){
     function gwave(){gcells.forEach(function(c,idx){var col=idx%8;setTimeout(function(){c.classList.add('lit');},col*55+Math.random()*70);setTimeout(function(){c.classList.remove('lit');},col*55+Math.random()*70+480);});gwi=(gwi+1)%gwords.length;setTimeout(function(){if(grTxt)grTxt.textContent=gwords[gwi];},180);}
     var gwInt=null;
     new IntersectionObserver(function(ents){
-      if(ents[0].isIntersecting){if(!gwInt){gwave();gwInt=setInterval(gwave,2200);}}
+      if(ents[0].isIntersecting){if(!gwInt){gwave();gwInt=setInterval(gwave,5000);}}
       else if(gwInt){clearInterval(gwInt);gwInt=null;}
     },{threshold:0.15}).observe(grIn);
   }
@@ -1903,6 +2162,214 @@ document.getElementById('navHamburger').addEventListener('click',function(){
   var defBtn=document.querySelector('.calc-term-btn[data-term="3"]');
   if(defBtn){defBtn.classList.add('term-active');}
   calcRender();
+})();
+
+/* ══════════════════════════════════════════════
+   ENTRANCE ANIMATION — particle burst intro
+══════════════════════════════════════════════ */
+(function(){
+  var intro=document.getElementById('kd-intro');
+  if(!intro)return;
+
+  /* Particle canvas inside intro */
+  var ic=document.getElementById('kd-intro-canvas');
+  var ictx=ic.getContext('2d');
+  ic.width=innerWidth; ic.height=innerHeight;
+  window.addEventListener('resize',function(){ic.width=innerWidth;ic.height=innerHeight;});
+
+  var pts=[],W=ic.width,H=ic.height;
+  var cx=W/2,cy=H/2;
+  var CYAN='rgba(0,240,255,';
+  var PURPLE='rgba(155,93,229,';
+  var burst=false;
+
+  /* Init ambient particles */
+  for(var i=0;i<80;i++){
+    pts.push({
+      x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-.5)*0.6,vy:(Math.random()-.5)*0.6,
+      r:0.5+Math.random()*1.2,
+      life:0.3+Math.random()*0.5,
+      color:Math.random()<0.7?CYAN:PURPLE,
+      phase:'ambient'
+    });
+  }
+
+  function triggerBurst(){
+    burst=true;
+    for(var i=0;i<120;i++){
+      var a=Math.random()*Math.PI*2;
+      var sp=2+Math.random()*8;
+      pts.push({
+        x:cx+(Math.random()-.5)*40,
+        y:cy+(Math.random()-.5)*40,
+        vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1,
+        r:1+Math.random()*4,
+        life:1,
+        decay:0.012+Math.random()*0.02,
+        color:Math.random()<0.65?CYAN:PURPLE,
+        phase:'burst'
+      });
+    }
+  }
+
+  var introRunning=true;
+  (function loop(){
+    if(!introRunning)return;
+    requestAnimationFrame(loop);
+    ictx.clearRect(0,0,ic.width,ic.height);
+    ic.width=ic.width; /* force clear without flicker */
+    ictx.clearRect(0,0,ic.width,ic.height);
+
+    for(var i=pts.length-1;i>=0;i--){
+      var p=pts[i];
+      if(p.phase==='burst'){
+        p.life-=(p.decay||0.015);
+        if(p.life<=0||p.r<0.2){pts.splice(i,1);continue;}
+        p.x+=p.vx;p.y+=p.vy;
+        p.vx*=0.97;p.vy*=0.97;
+        p.r*=0.985;
+        ictx.beginPath();ictx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ictx.fillStyle=p.color+(p.life*0.85)+')';
+        ictx.fill();
+      } else {
+        p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0)p.x=ic.width;if(p.x>ic.width)p.x=0;
+        if(p.y<0)p.y=ic.height;if(p.y>ic.height)p.y=0;
+        ictx.beginPath();ictx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ictx.fillStyle=p.color+p.life+')';
+        ictx.fill();
+      }
+    }
+  })();
+
+  /* Burst at the logo reveal moment */
+  setTimeout(triggerBurst,1050);
+
+  /* Exit intro after 2.2s */
+  setTimeout(function(){
+    intro.classList.add('done');
+    intro.addEventListener('animationend',function(){
+      intro.style.display='none';
+      introRunning=false;
+    },{once:true});
+  },2200);
+})();
+
+/* ══════════════════════════════════════════════
+   DESKTOP THEME SWITCHER — CYAN ↔ CRIMSON NEON
+   Switches every 60 seconds, desktop only
+══════════════════════════════════════════════ */
+(function(){
+  /* Only run on non-touch desktop */
+  if(window.matchMedia('(hover:none),(pointer:coarse)').matches)return;
+  if(window.matchMedia('(max-width:768px)').matches)return;
+
+  var isCrimson=false;
+  var flash=document.getElementById('theme-flash');
+  var pill=document.getElementById('theme-pill');
+
+  /* Themes */
+  var THEMES={
+    cyan:{
+      hex:'#00f0ff',
+      rgb:'0,240,255',
+      label:'⬤ CYAN MODE',
+      starFill:'#00f0ff',
+      cursorBg:'#00f0ff',
+      cursorGlow:'#00f0ff,0 0 22px rgba(0,240,255,0.8)',
+      flashBg:'rgba(0,240,255,0.12)'
+    },
+    crimson:{
+      hex:'#ff1a3c',
+      rgb:'255,26,60',
+      label:'⬤ CRIMSON MODE',
+      starFill:'#ff1a3c',
+      cursorBg:'#ff1a3c',
+      cursorGlow:'#ff1a3c,0 0 22px rgba(255,26,60,0.8)',
+      flashBg:'rgba(255,26,60,0.12)'
+    }
+  };
+
+  function applyTheme(name,isFirst){
+    var t=THEMES[name];
+    var root=document.documentElement;
+
+    /* CSS var override */
+    if(name==='crimson'){
+      root.classList.add('theme-crimson');
+    } else {
+      root.classList.remove('theme-crimson');
+    }
+
+    /* Flash effect */
+    if(!isFirst&&flash){
+      flash.style.background=t.flashBg;
+      flash.classList.remove('flash');
+      void flash.offsetWidth;
+      flash.classList.add('flash');
+    }
+
+    /* Pill */
+    if(pill){
+      pill.textContent=t.label;
+      pill.style.borderColor=t.hex;
+      pill.style.color=t.hex;
+      /* Show pill briefly */
+      pill.classList.add('visible');
+      clearTimeout(pill._hide);
+      pill._hide=setTimeout(function(){pill.classList.remove('visible');},2800);
+    }
+
+    /* Sync starfield canvas fill */
+    /* Store color for use by the draw loop */
+    window._kdThemeColor=t.hex;
+
+    /* Sync cursor dot */
+    var dots=document.querySelectorAll('div');
+    dots.forEach(function(el){
+      var s=el.style;
+      if(s.position==='fixed'&&s.borderRadius==='50%'){
+        el.style.background=t.hex;
+        el.style.boxShadow='0 0 10px '+t.hex+',0 0 22px rgba('+t.rgb+',0.8)';
+      }
+    });
+
+    /* Sync effects particles text color */
+    window._kdParticleColor='rgba('+t.rgb+',0.75)';
+
+    /* Sync cursor canvas particle color */
+    window._kdCursorColorRgb=t.rgb;
+
+    /* Crimson-specific: add scanline flicker to body */
+    if(name==='crimson'){
+      if(!document.getElementById('crimson-scanlines')){
+        var s=document.createElement('style');
+        s.id='crimson-scanlines';
+        s.textContent='body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,26,60,0.015) 2px,rgba(255,26,60,0.015) 4px);animation:scanNoise 8s linear infinite;}@keyframes scanNoise{0%{background-position:0 0;}100%{background-position:0 400px;}}';
+        document.head.appendChild(s);
+      }
+      document.body.style.setProperty('--scan-opacity','1');
+    } else {
+      var sc=document.getElementById('crimson-scanlines');
+      if(sc)sc.remove();
+    }
+  }
+
+  /* Initial state — show pill on first load after intro */
+  window._kdThemeColor='#00f0ff';
+  window._kdParticleColor='rgba(0,240,255,0.75)';
+  window._kdCursorColorRgb='0,240,255';
+
+  setTimeout(function(){
+    applyTheme('cyan',true);
+  },2500);
+
+  /* Switch every 60 seconds */
+  setInterval(function(){
+    isCrimson=!isCrimson;
+    applyTheme(isCrimson?'crimson':'cyan',false);
+  },60000);
 })();
 
 /* ── TOUCH FLIP FOR SERVICE CARDS ── */
