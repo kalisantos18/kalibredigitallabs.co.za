@@ -803,10 +803,10 @@ footer{position:relative;z-index:2;padding:48px 8% 32px;border-top:1px solid var
 #kdRejectAll:hover{border-color:rgba(255,80,80,.4);color:rgba(255,120,120,.8);}
 #kdSavePrefs{padding:10px 28px;border-radius:50px;font-size:.78rem;font-weight:700;background:#00f0ff;color:#000;border:none;cursor:pointer;transition:.2s;}
 #kdSavePrefs:hover{box-shadow:0 6px 24px rgba(0,240,255,.3);}
-#kdPrivacyModal{position:fixed;inset:0;z-index:9996;background:rgba(0,0,0,.8);opacity:0;pointer-events:none;transition:.3s;display:flex;align-items:center;justify-content:center;padding:20px;}
-#kdPrivacyModal.kd-open{opacity:1;pointer-events:all;}
-#kdPrivacyBox{background:#090912;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;transform:scale(.96);transition:.3s cubic-bezier(.16,1,.3,1);}
-#kdPrivacyModal.kd-open #kdPrivacyBox{transform:scale(1);}
+#kdPrivacyModal,#kdTermsModal,#kdRefundModal{position:fixed;inset:0;z-index:9996;background:rgba(0,0,0,.8);opacity:0;pointer-events:none;transition:.3s;display:flex;align-items:center;justify-content:center;padding:20px;}
+#kdPrivacyModal.kd-open,#kdTermsModal.kd-open,#kdRefundModal.kd-open{opacity:1;pointer-events:all;}
+#kdPrivacyBox,#kdTermsBox,#kdRefundBox{background:#090912;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;transform:scale(.96);transition:.3s cubic-bezier(.16,1,.3,1);}
+#kdPrivacyModal.kd-open #kdPrivacyBox,#kdTermsModal.kd-open #kdTermsBox,#kdRefundModal.kd-open #kdRefundBox{transform:scale(1);}
 .kd-privacy-close{float:right;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.6);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:.2s;}
 .kd-privacy-close:hover{background:rgba(255,255,255,.15);color:#fff;}
 .kd-privacy-section{margin-bottom:22px;}
@@ -1897,7 +1897,7 @@ nav,
   <div id="kdPrivacyBox">
     <button class="kd-privacy-close" onclick="document.getElementById('kdPrivacyModal').classList.remove('kd-open')">✕</button>
     <h3 style="font-size:1.2rem;margin-bottom:4px;">Privacy Policy</h3>
-    <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-bottom:28px;">Kalibre Digital Labs — Last updated: May 2025</p>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-bottom:28px;">Kalibre Digital Labs — Last updated: 11 September 2026</p>
     <div class="kd-privacy-section"><h4>1. Who We Are</h4><p>Kalibre Digital Labs (Reg. 2026/329362/07) is the responsible party under POPIA Act 4 of 2013. Registered address: 18 Cuming Road, Eldorado Park, Johannesburg, Gauteng. Information Officer: support.kalibredigitallabs@gmail.com | +27 62 541 1075.</p></div>
     <div class="kd-privacy-section"><h4>2. What Information We Collect</h4><ul><li>Contact details submitted via forms or WhatsApp (name, email, phone)</li><li>Website usage data via cookies (pages visited, session duration, device type)</li><li>Technical data (IP address, browser type) for security and analytics</li></ul></div>
     <div class="kd-privacy-section"><h4>3. Why We Collect It</h4><ul><li>To respond to your enquiries — lawful basis: contractual necessity</li><li>To improve our website — lawful basis: legitimate interest</li><li>To send marketing communications (with consent) — lawful basis: consent (POPIA s.11(1)(a))</li><li>To comply with legal obligations — lawful basis: legal compliance</li></ul></div>
@@ -1907,6 +1907,74 @@ nav,
     <div class="kd-privacy-section"><h4>7. Security</h4><p>We implement reasonable technical and organisational measures to protect your personal information in accordance with POPIA s.19.</p></div>
     <div style="text-align:center;margin-top:20px;">
       <button onclick="document.getElementById('kdPrivacyModal').classList.remove('kd-open')" style="background:#00f0ff;color:#000;border:none;padding:12px 32px;border-radius:50px;font-weight:700;cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS & CONDITIONS MODAL -->
+<div id="kdTermsModal" role="dialog" aria-modal="true" aria-label="Terms & Conditions">
+  <div id="kdTermsBox">
+    <button class="kd-privacy-close" onclick="document.getElementById('kdTermsModal').classList.remove('kd-open')">✕</button>
+    <h3 style="font-size:1.2rem;margin-bottom:4px;">Terms &amp; Conditions</h3>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-bottom:28px;">Kalibre Digital Labs (Pty) Ltd — Last updated: 11 September 2026</p>
+    <div class="kd-privacy-section"><h4>1. About Kalibre Digital Labs</h4><p>Kalibre Digital Labs is a South African digital services company providing website design and development, hosting and SSL setup, SEO, Google Business Profile and local search optimisation, branding and logo design, analytics and reporting, booking and enquiry systems, WhatsApp integrations, digital strategy and consulting, and other agreed custom services. Registered address: 18 Cuming Road, Eldorado Park, Johannesburg, Gauteng, South Africa. Reg. No. 2026/329362/07. Email: support.kalibredigitallabs@gmail.com | +27 62 541 1075.</p></div>
+    <div class="kd-privacy-section"><h4>2. Acceptance of Terms</h4><p>A client accepts these Terms when they purchase a service, approve a quotation or proposal, pay an invoice or payment link, instruct KDL to begin work, or continue using a service after receiving these Terms. A project-specific written agreement takes precedence over these general Terms where there is a conflict.</p></div>
+    <div class="kd-privacy-section"><h4>3. Quotations and Scope of Work</h4><p>All project work is based on the scope agreed between KDL and the client. Work requested outside the agreed scope may be charged separately, and KDL will communicate additional costs before undertaking substantial out-of-scope work.</p></div>
+    <div class="kd-privacy-section"><h4>4. Pricing and Payments</h4><p>Prices are quoted in South African Rand unless otherwise stated. For monthly services, payment is due per the agreed billing cycle; for once-off projects, a deposit or full payment may be required before work begins. KDL may suspend services on overdue accounts. Third-party costs (domains, premium software, plugins, advertising, stock assets, APIs) may be charged separately unless included in the quotation.</p></div>
+    <div class="kd-privacy-section"><h4>5. Website Development</h4><p>The client is responsible for providing required content (business information, text, images, logos, contact details, prices, service descriptions, legal documents, account access) and for ensuring supplied information is accurate and that the client has permission to use it. Delays in providing content or approvals may affect the project timeline.</p></div>
+    <div class="kd-privacy-section"><h4>6. Project Timelines</h4><p>Timelines depend on receipt of required content, feedback, approvals, third-party services, and technical complexity. Delays caused by the client, a third party, or circumstances outside KDL's reasonable control do not automatically constitute a breach.</p></div>
+    <div class="kd-privacy-section"><h4>7. Client Reviews and Approvals</h4><p>Once a client approves a design, page, feature or milestone, later changes requiring substantial redevelopment may be treated as additional work. Minor corrections that don't match the agreed scope are addressed where reasonably possible.</p></div>
+    <div class="kd-privacy-section"><h4>8. Website Ownership and Intellectual Property</h4><p>Unless otherwise agreed in writing, the client owns the final website content and deliverables created specifically for them once all amounts due to KDL are paid. Third-party software, libraries, fonts and plugins remain subject to their own licences. KDL retains ownership of its pre-existing tools, reusable code, frameworks and templates not created exclusively for the client, and may reuse general techniques and non-confidential knowledge on other projects.</p></div>
+    <div class="kd-privacy-section"><h4>9. Domain Names and Hosting</h4><p>Where KDL manages a domain or hosting on a client's behalf, the relevant registrar's and host's terms also apply. KDL does not guarantee uninterrupted hosting availability, as this depends on third-party providers, but will take reasonable steps to assist with hosting issues.</p></div>
+    <div class="kd-privacy-section"><h4>10. Search Engine Optimisation</h4><p>SEO services aim to improve a website's technical health, visibility and search performance. KDL does not guarantee a specific Google ranking, visitor count, lead volume, revenue amount, or timeframe — results are affected by factors outside KDL's control including algorithm changes and competition.</p></div>
+    <div class="kd-privacy-section"><h4>11. Google Business Profile and Third-Party Platforms</h4><p>Where KDL provides Google Business Profile, Maps, analytics or similar services, the relevant third party's policies also apply. KDL cannot guarantee approval, verification, ranking or continued availability of a third-party platform. Clients remain responsible for the accuracy of their business information.</p></div>
+    <div class="kd-privacy-section"><h4>12. Branding and Creative Services</h4><p>Branding and design services are supplied per the agreed scope, which will state the number of concepts and revisions included. Additional work may be charged separately. Clients are responsible for ensuring supplied names, slogans and images don't infringe third-party rights; KDL does not provide trademark clearance unless specifically agreed.</p></div>
+    <div class="kd-privacy-section"><h4>13. Third-Party Services</h4><p>Some services rely on third-party platforms (Google, Meta, WhatsApp, payment providers, registrars, hosts, analytics and email providers, APIs). KDL is not responsible for outages, policy or pricing changes imposed by third parties. Where a third-party account belongs to the client, the client remains responsible for complying with that provider's terms.</p></div>
+    <div class="kd-privacy-section"><h4>14. Client Responsibilities</h4><p>The client agrees to provide accurate information and required content/access, respond to approval requests, pay on time, maintain permission to use supplied content, avoid unlawful use of KDL services, and notify KDL of information changes.</p></div>
+    <div class="kd-privacy-section"><h4>15. Prohibited Content and Activities</h4><p>KDL may refuse or suspend work involving unlawful content or activity — including fraud, malware, phishing, illegal goods/services, copyright infringement, impersonation, or abuse of third-party systems — and may terminate the affected service where appropriate.</p></div>
+    <div class="kd-privacy-section"><h4>16. Security</h4><p>KDL takes reasonable technical measures to protect systems and client information, though no internet-connected system can be guaranteed fully secure. Clients are responsible for protecting their own credentials and should notify KDL promptly of any suspected compromise.</p></div>
+    <div class="kd-privacy-section"><h4>17. Personal Information</h4><p>KDL processes personal information per its Privacy Policy and POPIA (Act 4 of 2013). Where KDL processes personal information on a client's behalf, the client remains responsible for ensuring it may lawfully be processed.</p></div>
+    <div class="kd-privacy-section"><h4>18. Cancellation of Monthly Services</h4><p>A client may cancel a monthly service with written notice; cancellation generally takes effect at the end of the current paid billing period and does not remove amounts already due.</p></div>
+    <div class="kd-privacy-section"><h4>19. Suspension and Termination</h4><p>KDL may suspend or terminate services for overdue payment, material breach, unlawful use, security risk, or unreasonable legal/operational exposure — with notice and an opportunity to resolve the issue where reasonably possible.</p></div>
+    <div class="kd-privacy-section"><h4>20. Backups and Data</h4><p>KDL may maintain backups as part of certain services, but clients should keep their own copies of important content. KDL does not guarantee a specific retention period or that every file can be restored.</p></div>
+    <div class="kd-privacy-section"><h4>21. Service Availability</h4><p>KDL uses reasonable efforts to provide reliable services but does not guarantee uninterrupted availability of websites, hosting, email or integrations, given possible maintenance, technical failures and third-party outages.</p></div>
+    <div class="kd-privacy-section"><h4>22. Limitation of Liability</h4><p>To the extent permitted by South African law, KDL is not liable for indirect, consequential, incidental or special losses (including loss of profits, business interruption, data or opportunity), without excluding any right that cannot lawfully be excluded.</p></div>
+    <div class="kd-privacy-section"><h4>23. Events Outside Our Control</h4><p>KDL is not responsible for delays or failures caused by events outside its reasonable control, including internet or hosting outages, registrar problems, third-party platform changes, cyber incidents, natural disasters, power failures or government action.</p></div>
+    <div class="kd-privacy-section"><h4>24. Complaints and Disputes</h4><p>Clients should first contact KDL directly at support.kalibredigitallabs@gmail.com or +27 62 541 1075 to resolve complaints promptly. Nothing here prevents a consumer exercising rights under South African law or approaching a regulatory body.</p></div>
+    <div class="kd-privacy-section"><h4>25. Governing Law</h4><p>These Terms are governed by the laws of the Republic of South Africa.</p></div>
+    <div class="kd-privacy-section"><h4>26. Changes to These Terms</h4><p>KDL may update these Terms from time to time; the latest version is published on the KDL website with the applicable update date.</p></div>
+    <div class="kd-privacy-section"><h4>27–28. Severability &amp; Entire Agreement</h4><p>If any provision is found unlawful or unenforceable, it will be modified to the minimum extent necessary and the rest will continue to apply. These Terms, together with any quotation, proposal, invoice or service agreement, form the entire agreement between KDL and the client.</p></div>
+    <div class="kd-privacy-section"><h4>29. Contact Details</h4><p>Kalibre Digital Labs (Pty) Ltd — Reg. No. 2026/329362/07. 18 Cuming Road, Eldorado Park, Johannesburg, Gauteng, South Africa. Email: support.kalibredigitallabs@gmail.com | Phone/WhatsApp: +27 62 541 1075.</p></div>
+    <div style="text-align:center;margin-top:20px;">
+      <button onclick="document.getElementById('kdTermsModal').classList.remove('kd-open')" style="background:#00f0ff;color:#000;border:none;padding:12px 32px;border-radius:50px;font-weight:700;cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- REFUND POLICY MODAL -->
+<div id="kdRefundModal" role="dialog" aria-modal="true" aria-label="Refund Policy">
+  <div id="kdRefundBox">
+    <button class="kd-privacy-close" onclick="document.getElementById('kdRefundModal').classList.remove('kd-open')">✕</button>
+    <h3 style="font-size:1.2rem;margin-bottom:4px;">Refund Policy</h3>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-bottom:28px;">Kalibre Digital Labs (Pty) Ltd — Last updated: 11 September 2026</p>
+    <div class="kd-privacy-section"><h4>1. Once-Off Website and Development Projects</h4><p>Once work has started, payments may become non-refundable to the extent already allocated to work performed, development time, third-party services, domain registration or hosting. If cancelled before substantial work begins, KDL may assess whether a partial refund is appropriate after deducting reasonable costs incurred. Any consumer law right to cancel or receive a refund applies.</p></div>
+    <div class="kd-privacy-section"><h4>2. Deposits</h4><p>A deposit reserves development time and is not automatically refundable once work has commenced. If KDL is responsible for terminating a project before delivering the agreed work, KDL will assess amounts paid, work completed and costs incurred to determine any refund required.</p></div>
+    <div class="kd-privacy-section"><h4>3. Monthly Services</h4><p>Once a monthly billing period has commenced, the fee generally covers that period's service and allocated work. Cancellation does not automatically create a refund for the current billing period, subject to any applicable law.</p></div>
+    <div class="kd-privacy-section"><h4>4. Hosting and Domain Costs</h4><p>Once a domain is registered or a non-refundable third-party service is purchased on the client's behalf, that amount may not be refundable where the third-party provider doesn't refund it. KDL will explain such costs before purchase where reasonably possible.</p></div>
+    <div class="kd-privacy-section"><h4>5. SEO Services</h4><p>SEO fees are not refundable merely because a specific ranking, traffic level or lead volume wasn't achieved, as performance is affected by factors outside KDL's control. This doesn't affect non-excludable consumer rights.</p></div>
+    <div class="kd-privacy-section"><h4>6. Branding and Design Services</h4><p>Once design work has commenced, fees may be non-refundable to the extent work has been completed. If a client cancels after concepts or drafts are produced, KDL may retain an appropriate portion for work and costs already incurred.</p></div>
+    <div class="kd-privacy-section"><h4>7. Client-Requested Cancellation</h4><p>If a client cancels after work begins, KDL calculates the amount payable based on work completed, development time, approved milestones, third-party and domain/hosting costs, and other reasonable expenses. Any refundable remainder is processed after review.</p></div>
+    <div class="kd-privacy-section"><h4>8. KDL-Initiated Cancellation</h4><p>If KDL cancels a project without the client being in breach, KDL assesses work completed and amounts paid, then completes the work, offers a reasonable alternative, or refunds amounts paid for services not provided.</p></div>
+    <div class="kd-privacy-section"><h4>9. Incorrect or Defective Work</h4><p>If delivered work materially fails to match the agreed scope, notify KDL as soon as possible. KDL first gets a reasonable opportunity to correct or complete the work; where correction isn't possible, the parties may agree an appropriate remedy, which may include a partial refund.</p></div>
+    <div class="kd-privacy-section"><h4>10. Duplicate or Accidental Payments</h4><p>Contact KDL as soon as possible about a duplicate payment; after verification, KDL will arrange an appropriate refund of the verified amount.</p></div>
+    <div class="kd-privacy-section"><h4>11. Payment Provider Fees</h4><p>KDL may account for genuinely incurred transaction fees when processing a refund where legally permissible; no deduction is made where the law requires the full amount returned.</p></div>
+    <div class="kd-privacy-section"><h4>12. Refund Requests</h4><p>Submit refund requests in writing to support.kalibredigitallabs@gmail.com, including your name/business, invoice reference, payment date, amount, service purchased, and reason. KDL may request further verification information.</p></div>
+    <div class="kd-privacy-section"><h4>13. Refund Processing</h4><p>Approved refunds are generally processed via the original payment method where practical. Processing time depends on the payment provider or bank and is outside KDL's control.</p></div>
+    <div class="kd-privacy-section"><h4>14. Consumer Rights</h4><p>Nothing here removes, restricts or waives any consumer right that cannot lawfully be excluded under South African law, including under the Consumer Protection Act or the Electronic Communications and Transactions Act.</p></div>
+    <div class="kd-privacy-section"><h4>15. No Guaranteed Refund for Unsatisfactory Business Results</h4><p>KDL provides digital services, not guaranteed business outcomes. A refund is not automatic because traffic, rankings or leads are lower than expected, or a business result or strategy changed. KDL will still investigate legitimate service-quality complaints fairly.</p></div>
+    <div class="kd-privacy-section"><h4>16. Contact</h4><p>Kalibre Digital Labs (Pty) Ltd — Reg. No. 2026/329362/07. Email: support.kalibredigitallabs@gmail.com | Phone/WhatsApp: +27 62 541 1075. Address: 18 Cuming Road, Eldorado Park, Johannesburg, Gauteng, South Africa.</p></div>
+    <div style="text-align:center;margin-top:20px;">
+      <button onclick="document.getElementById('kdRefundModal').classList.remove('kd-open')" style="background:#00f0ff;color:#000;border:none;padding:12px 32px;border-radius:50px;font-weight:700;cursor:pointer;">Close</button>
     </div>
   </div>
 </div>
@@ -1931,8 +1999,12 @@ nav,
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Kalibre Digital Labs. All rights reserved.</span>
+    <span>© 2026 KALIBRE DIGITAL LABS (Pty) Ltd. All rights reserved.</span>
     <span>
+      <a href="#" onclick="kdOpenTerms(event)">Terms &amp; Conditions</a>
+      &nbsp;·&nbsp;
+      <a href="#" onclick="kdOpenRefund(event)">Refund Policy</a>
+      &nbsp;·&nbsp;
       <a href="#" onclick="kdOpenPrivacy(event)">Privacy Policy</a>
       &nbsp;·&nbsp;
       <a href="#" onclick="kdOpenCookieSettings(event)">Cookie Settings</a>
@@ -3018,6 +3090,8 @@ function submitLeadForm(){
   }
   window.kdToggleCat=function(cat){var b=document.getElementById('kd-body-'+cat);if(b)b.classList.toggle('kd-open');};
   window.kdOpenPrivacy=function(e){if(e)e.preventDefault();document.getElementById('kdPrivacyModal').classList.add('kd-open');};
+  window.kdOpenTerms=function(e){if(e)e.preventDefault();document.getElementById('kdTermsModal').classList.add('kd-open');};
+  window.kdOpenRefund=function(e){if(e)e.preventDefault();document.getElementById('kdRefundModal').classList.add('kd-open');};
   window.kdOpenCookieSettings=function(e){if(e)e.preventDefault();document.getElementById('kdCookieModal').classList.add('kd-open');};
   window.addEventListener('load',function(){
     var ex=getCookie();
@@ -3033,7 +3107,9 @@ function submitLeadForm(){
   document.getElementById('kdReopenBtn').onclick=function(){syncToggles(getCookie());document.getElementById('kdCookieModal').classList.add('kd-open');};
   document.getElementById('kdCookieModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('kd-open');});
   document.getElementById('kdPrivacyModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('kd-open');});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.getElementById('kdCookieModal').classList.remove('kd-open');document.getElementById('kdPrivacyModal').classList.remove('kd-open');}});
+  document.getElementById('kdTermsModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('kd-open');});
+  document.getElementById('kdRefundModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('kd-open');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.getElementById('kdCookieModal').classList.remove('kd-open');document.getElementById('kdPrivacyModal').classList.remove('kd-open');document.getElementById('kdTermsModal').classList.remove('kd-open');document.getElementById('kdRefundModal').classList.remove('kd-open');}});
 })();
 </script>
 <script>
